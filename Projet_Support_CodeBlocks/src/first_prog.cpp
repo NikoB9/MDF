@@ -138,6 +138,7 @@ bool initGL()
 
     glEnable(GL_DEPTH_TEST);
 
+
     return success;
 }
 
@@ -156,7 +157,7 @@ const void render(Form* formlist[MAX_FORMS_NUMBER], const Point &cam_pos)
 {
     // Clear color buffer and Z-Buffer
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+    glScaled(0.5,0.5,0.5);
     // Initialize Modelview Matrix
     glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
@@ -194,6 +195,7 @@ const void render(Form* formlist[MAX_FORMS_NUMBER], const Point &cam_pos)
         glPopMatrix(); // Restore the camera viewing point for next object
         i++;
     }
+
 }
 
 void close(SDL_Window** window)
@@ -245,9 +247,35 @@ int main(int argc, char* args[])
         }
         // Create here specific forms and add them to the list...
         // Don't forget to update the actual number_of_forms !
+
         Cube_face *pfirst_face = NULL;
-        pfirst_face = new Cube_face(Vector(1,0,0), Vector(0,1,0), Point(-0.5, -0.5, -0.5));
+        pfirst_face = new Cube_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, 0));
         forms_list[number_of_forms] = pfirst_face;
+        number_of_forms++;
+
+        Cube_face *pfirst_face1 = NULL;
+        pfirst_face1 = new Cube_face(Vector(1,0,0), Vector(0,0,1), Point(0, 0, 0));
+        forms_list[number_of_forms] = pfirst_face1;
+        number_of_forms++;
+
+        Cube_face *pfirst_face2 = NULL;
+        pfirst_face2 = new Cube_face(Vector(0,1,0), Vector(0,0, 1), Point(0, 0, 0));
+        forms_list[number_of_forms] = pfirst_face2;
+        number_of_forms++;
+
+        Cube_face *pfirst_face3 = NULL;
+        pfirst_face3 = new Cube_face(Vector(0,1,0), Vector(0,0,1), Point(1, 0, 0));
+        forms_list[number_of_forms] = pfirst_face3;
+        number_of_forms++;
+
+        Cube_face *pfirst_face4 = NULL;
+        pfirst_face4 = new Cube_face(Vector(1,0,0), Vector(0,0,1), Point(0, 1, 0));
+        forms_list[number_of_forms] = pfirst_face4;
+        number_of_forms++;
+
+        Cube_face *pfirst_face5 = NULL;
+        pfirst_face5 = new Cube_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, 1));
+        forms_list[number_of_forms] = pfirst_face5;
         number_of_forms++;
 
         // Get first "current time"
