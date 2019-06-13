@@ -18,8 +18,8 @@ using namespace std;
 /* Constants and functions declarations                                    */
 /***************************************************************************/
 // Screen dimension constants
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 1040;
+const int SCREEN_HEIGHT = 700;
 
 // Max number of forms : static allocation
 const int MAX_FORMS_NUMBER = 10;
@@ -157,7 +157,6 @@ const void render(Form* formlist[MAX_FORMS_NUMBER], const Point &cam_pos)
 {
     // Clear color buffer and Z-Buffer
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glScaled(0.5,0.5,0.5);
     // Initialize Modelview Matrix
     glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
@@ -169,22 +168,26 @@ const void render(Form* formlist[MAX_FORMS_NUMBER], const Point &cam_pos)
     glRotated(30, 1, 0, -1);
 
     // X, Y and Z axis
+    glScaled(0.5,0.5,.5);
     glPushMatrix(); // Preserve the camera viewing point for further forms
     // Render the coordinates system
     glBegin(GL_LINES);
     {
         glColor3f(1.0f, 0.0f, 0.0f);
         glVertex3i(0, 0, 0);
-        glVertex3i(1, 0, 0);
+        glVertex3i(10, 0, 0);
         glColor3f(0.0f, 1.0f, 0.0f);
         glVertex3i(0, 0, 0);
-        glVertex3i(0, 1, 0);
+        glVertex3i(0, 10, 0);
         glColor3f(0.0f, 0.0f, 1.0f);
         glVertex3i(0, 0, 0);
-        glVertex3i(0, 0, 1);
+        glVertex3i(0, 0, 10);
     }
     glEnd();
     glPopMatrix(); // Restore the camera viewing point for next object
+
+    //Translation du centre de gravité du cube
+    //glTranslated(0.0,2.0,4.0);
 
     // Render the list of forms
     unsigned short i = 0;
@@ -277,6 +280,9 @@ int main(int argc, char* args[])
         pfirst_face5 = new Cube_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, 1));
         forms_list[number_of_forms] = pfirst_face5;
         number_of_forms++;
+
+
+        glScaled(0.5,0.5,0.5);
 
         // Get first "current time"
         previous_time = SDL_GetTicks();
