@@ -23,10 +23,11 @@ void Form::render()
 }
 
 
-Sphere::Sphere(double r, Color cl)
+Sphere::Sphere(double r, Color cl, Point _org)
 {
     radius = r;
     col = cl;
+    pos = _org;
 }
 
 
@@ -38,13 +39,19 @@ void Sphere::update(double delta_t)
 
 void Sphere::render()
 {
-    GLUquadric *quad;
 
-    quad = gluNewQuadric();
+    GLUquadric* params;
+    params = gluNewQuadric();
 
-    // Complete this part
+    //composition des params de la sphère
+    gluQuadricDrawStyle(params,GLU_FILL);
+    glColor3f(this->col.r, this->col.g, this->col.b);
+    glTranslated(this->pos.x,this->pos.y,this->pos.z);
 
-    gluDeleteQuadric(quad);
+    //Rendu de la sphere
+    gluSphere(params,this->getRadius(),110,110);
+    gluDeleteQuadric(params);
+
 }
 
 
@@ -87,4 +94,26 @@ void Cube_face::render()
         glVertex3d(p4.x, p4.y, p4.z);
     }
     glEnd();
+}
+
+
+//constructor
+Charge::Charge(double _charge, Sphere _sphere, Vector _force, int _bloquage)
+{
+    chargeValue = _charge;
+    sphere = _sphere;
+    force = _force;
+    bloquage = _bloquage;
+   // chargeFictive = _chargeFictive;
+}
+
+//Render de la charge
+void Charge::render()
+{
+    this->sphere.render();
+}
+
+void Charge::update(double delta_t)
+{
+    // Nothing to do here, animation update is done in child class method
 }

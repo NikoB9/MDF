@@ -4,11 +4,17 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
 #include <GL/GLU.h>
+#include <math.h>
 
 // Module for space geometry
 #include "geometry.h"
 // Module for generating and rendering forms
 #include "forms.h"
+//Include Charge
+#include "projet.h"
+
+
+#define PI 3.14159265
 
 
 using namespace std;
@@ -20,6 +26,8 @@ using namespace std;
 // Screen dimension constants
 const int SCREEN_WIDTH = 1040;
 const int SCREEN_HEIGHT = 700;
+
+
 
 // Max number of forms : static allocation
 const int MAX_FORMS_NUMBER = 10;
@@ -239,7 +247,8 @@ int main(int argc, char* args[])
         SDL_Event event;
 
         // Camera position
-        Point camera_position(0, 0.0, 5.0);
+        Point camera_position(1, 5, -10);
+        double theta=0.0, phi=0.0, rho=4.0;
 
         // The forms to render
         Form* forms_list[MAX_FORMS_NUMBER];
@@ -281,6 +290,26 @@ int main(int argc, char* args[])
         forms_list[number_of_forms] = pfirst_face5;
         number_of_forms++;
 
+        Sphere *psphere1 = NULL;
+        Color c1(0, 255, 0);
+        Point p(-2,3,0);
+        //double theta = 0;
+        psphere1 = new Sphere(0.5, c1, p);
+        forms_list[number_of_forms] = psphere1;
+        int idSphere=number_of_forms;
+        number_of_forms++;
+
+        Sphere *psphere2 = NULL;
+        Color c2(255, 0, 0);
+        Point p1(3,2,0);
+        psphere2 = new Sphere(.5, c2, p1);
+        /*forms_list[number_of_forms] = psphere2;
+        number_of_forms++;*/
+
+        Charge *pCharge1 = NULL;
+        pCharge1 = new Charge(3.0,Sphere(.5, c2, p1), Vector(p,p1), 1);
+        forms_list[number_of_forms] = pCharge1;
+        number_of_forms++;
 
         glScaled(0.5,0.5,0.5);
 
@@ -301,6 +330,7 @@ int main(int argc, char* args[])
                 case SDL_QUIT:
                     quit = true;
                     break;
+
                 case SDL_KEYDOWN:
                     // Handle key pressed with current mouse position
                     SDL_GetMouseState( &x, &y );
@@ -308,12 +338,29 @@ int main(int argc, char* args[])
                     switch(key_pressed)
                     {
                     // Quit the program when 'q' or Escape keys are pressed
-                    case SDLK_q:
+                    //case SDLK_q:
+                    case SDLK_UP:
+                        phi-=1* PI / 180.0;
+                        std::cout<<"rho : "<<rho<<"  theta : "<<theta<<"   phi  : "<<phi<<" \n";
+                        std::cout<<"x : "<<camera_position.x<<"  y:"<<camera_position.y<<"  z:"<<camera_position.z<<"\n";
+                        break;
+                    case SDLK_DOWN:
+                        phi+=1* PI / 180.0;
+                        std::cout<<"rho : "<<rho<<"  theta : "<<theta<<"   phi  : "<<phi<<" \n";
+                        std::cout<<"x : "<<camera_position.x<<"  y:"<<camera_position.y<<"  z:"<<camera_position.z<<"\n";
+                        break;
+                    case SDLK_RIGHT:
+                        theta-=1* PI / 180.0;
+                        std::cout<<"rho : "<<rho<<"  theta : "<<theta<<"   phi  : "<<phi<<" \n";
+                        std::cout<<"x : "<<camera_position.x<<"  y:"<<camera_position.y<<"  z:"<<camera_position.z<<"\n";
+                        break;
+                    case SDLK_LEFT:
+                        theta+=1* PI / 180.0;
+                        std::cout<<"rho : "<<rho<<"  theta : "<<theta<<"   phi  : "<<phi<<" \n";
+                        std::cout<<"x : "<<camera_position.x<<"  y:"<<camera_position.y<<"  z:"<<camera_position.z<<"\n";
+                        break;
                     case SDLK_ESCAPE:
                         quit = true;
-                        break;
-
-                    default:
                         break;
                     }
                     break;
@@ -330,6 +377,12 @@ int main(int argc, char* args[])
                 previous_time = current_time;
                 update(forms_list, 1e-3 * elapsed_time); // International system units : seconds
             }
+
+            //Update Camera
+            //x = rho*sin(phi)*cos(theta)   y=rho*sin(phi)*sin(theta)   z=rho*cos(theta)
+            camera_position.x = rho*sin(phi)*cos(theta);
+            camera_position.z = rho*sin(phi)*sin(theta);
+            camera_position.y = rho*cos(theta);
 
             // Render the scene
             render(forms_list, camera_position);
