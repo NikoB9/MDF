@@ -48,11 +48,12 @@ private:
     double radius;
     Point pos;
 public:
-    Sphere(double r = 1.0, Color cl = Color(), Point p = Point());
+    Sphere(double r = 1.0, Color cl = Color(), Point org = Point());
     const double getRadius() {return radius;}
     void setRadius(double r) {radius = r;}
     void update(double delta_t);
     void render();
+    void setPos(Point pos);
 };
 
 
@@ -70,43 +71,18 @@ public:
     void render();
 };
 
-
-// Charges
-class Charge: public Form
+// A face of parallepipede
+class Parallepipede_face : public Form
 {
-protected:
-    //charge associée
-    double chargeValue;
-    //sphère de représentation
-    Sphere sphere;
-    //force subi par la charge
-    Vector force;
-    //Si 1 la charge est figée dans l'espace, sinon elle bouge
-    bool bloquage;
-    //Charge fictive de l'ensemble des autres charges réunie en une charge.
-    //Charge chargeFictive;
+private :
+    Vector vdir1, vdir2;
+    double length, height, depth;
 public:
-    //constructor
-    Charge(double charge = 0.0, Sphere _sphere = Sphere(),Vector _force = Vector(0,0,0),
-             int _bloquage = 1);
-    void render();
+    Parallepipede_face(Vector v1 = Vector(1,0,0), Vector v2 = Vector(0,0,1),
+          Point org = Point(), double length = 1.0, double height = 1.0, double depth = 0.0,
+          Color cl = Color());
     void update(double delta_t);
-
-    //getter chargeValue
-    //double getCharge(){return charge;}
-    //setter chargeValue
-   // void setCharge(double _charge){chargeValue=_charge;}
-
-    //getter force
-    //Vector getForce(){return force;}
-    //setter force
-
-
-    //setter charge fictive
-    //setter charge force
-
-
-
+    void render();
 };
 
 #endif // FORMS_H_INCLUDED
