@@ -282,7 +282,7 @@ int main(int argc, char* args[])
 
         //TEXTURES
         GLuint texture_sol = loadTexture("./textures/02.jpg");
-        GLuint texture_mur = loadTexture("./textures/03.jpg");
+        GLuint texture_mur = loadTexture("./textures/vecteur7.jpg");
 
 
         //FACE 1 EXTERIEUR PLATEAU

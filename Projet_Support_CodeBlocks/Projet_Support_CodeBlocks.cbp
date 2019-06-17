@@ -43,6 +43,8 @@
 			<Add library="glu32" />
 			<Add directory="./lib" />
 		</Linker>
+		<Unit filename="02.jpg" />
+		<Unit filename="03.jpg" />
 		<Unit filename="include/animation.h" />
 		<Unit filename="include/forms.h" />
 		<Unit filename="include/geometry.h" />
