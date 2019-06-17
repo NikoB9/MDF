@@ -23,11 +23,15 @@ void Form::render()
 }
 
 
-Sphere::Sphere(double r, Color cl, Point _org)
+Sphere::Sphere(double r, Color cl, Point org)
 {
     radius = r;
     col = cl;
-    pos = _org;
+    pos = org;
+}
+
+void Sphere::setPos(Point pos){
+    this->pos = pos;
 }
 
 
@@ -39,19 +43,23 @@ void Sphere::update(double delta_t)
 
 void Sphere::render()
 {
+    GLUquadric *quad;
+    quad = gluNewQuadric();
 
-    GLUquadric* params;
-    params = gluNewQuadric();
+    // Complete this part
+    gluQuadricDrawStyle(quad, GLU_FILL);
 
-    //composition des params de la sphère
-    gluQuadricDrawStyle(params,GLU_FILL);
-    glColor3f(this->col.r, this->col.g, this->col.b);
+
+    //Couleur sphère
+    glColor3f(this->col.r,this->col.g,this->col.b);
+    //Barrycentre
     glTranslated(this->pos.x,this->pos.y,this->pos.z);
+    //rotation
+    //glRotated(theta, x, , z);
 
-    //Rendu de la sphere
-    gluSphere(params,this->getRadius(),110,110);
-    gluDeleteQuadric(params);
+    gluSphere(quad,this->getRadius(), 110, 110);
 
+    gluDeleteQuadric(quad);
 }
 
 
@@ -81,6 +89,9 @@ void Cube_face::render()
     p3.translate(width*vdir2);
     p4.translate(width*vdir2);
 
+    // dimension
+    //glScaled(0.5,0.5,0.5);
+
     Form::render();
     glBegin(GL_QUADS);
     {
@@ -97,23 +108,53 @@ void Cube_face::render()
 }
 
 
-//constructor
-Charge::Charge(double _charge, Sphere _sphere, Vector _force, int _bloquage)
+Parallepipede_face::Parallepipede_face(Vector v1, Vector v2, Point org, double l, double h, double d, Color cl)
 {
-    chargeValue = _charge;
-    sphere = _sphere;
-    force = _force;
-    bloquage = _bloquage;
-   // chargeFictive = _chargeFictive;
+    vdir1 = 1.0 / v1.norm() * v1;
+    vdir2 = 1.0 / v2.norm() * v2;
+    anim.setPos(org);
+    length = l;
+    height = h;
+    depth = d;
+    col = cl;
 }
 
-//Render de la charge
-void Charge::render()
+
+void Parallepipede_face::update(double delta_t)
 {
-    this->sphere.render();
+    // Do nothing, no physics associated to a Cube_face
 }
 
-void Charge::update(double delta_t)
+
+void Parallepipede_face::render()
 {
-    // Nothing to do here, animation update is done in child class method
+    Point p1 = Point();
+    Point p2 = p1, p3, p4 = p1;
+    p2.translate(length*vdir1);
+    p3 = p2;
+    p3.translate(height*vdir2);
+    p4.translate(height*vdir2);
+
+
+    // dimension
+    //glScaled(0.5,0.5,0.5);
+
+    Form::render();
+    glBegin(GL_QUADS);
+    {
+        //extérieur
+        //glColor3f(1,1,0);
+        glColor3f(col.r, col.g, col.b);
+        glVertex3d(p1.x, p1.y, p1.z);
+        //glColor3f(0,1,1);
+        glColor3f(col.r, col.g, col.b);
+        glVertex3d(p2.x, p2.y, p2.z);
+        //glColor3f(1,0,1);
+        glColor3f(col.r, col.g, col.b);
+        glVertex3d(p3.x, p3.y, p3.z);
+        //glColor3f(0,1,0);
+        glColor3f(col.r, col.g, col.b);
+        glVertex3d(p4.x, p4.y, p4.z);
+    }
+    glEnd();
 }

@@ -3258,16 +3258,16 @@
 	"geometry.h"
 	"animation.h"
 
-1466443941 source:c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\src\animation.cpp
+1466440341 source:d:\cours polytech\projetcoop\projet_support_codeblocks\src\animation.cpp
 	"animation.h"
 
-1466443941 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\animation.h
+1466440341 d:\cours polytech\projetcoop\projet_support_codeblocks\include\animation.h
 	"geometry.h"
 
-1466429544 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\geometry.h
+1466425944 d:\cours polytech\projetcoop\projet_support_codeblocks\include\geometry.h
 	<iostream>
 
-1560535659 source:c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\src\first_prog.cpp
+1560350302 source:d:\cours polytech\projetcoop\projet_support_codeblocks\src\first_prog.cpp
 	<iostream>
 	<cmath>
 	<SDL2/SDL.h>
@@ -3275,9 +3275,8 @@
 	<GL/GLU.h>
 	"geometry.h"
 	"forms.h"
-	"projet.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl.h
 	"SDL_main.h"
 	"SDL_stdinc.h"
 	"SDL_assert.h"
@@ -3308,12 +3307,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_main.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_main.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_stdinc.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_stdinc.h
 	"SDL_config.h"
 	<sys/types.h>
 	<stdio.h>
@@ -3342,34 +3341,34 @@
 	<stdlib.h>
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_config.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_config.h
 	"SDL_platform.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_platform.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_platform.h
 	"AvailabilityMacros.h"
 	"TargetConditionals.h"
 	<winapifamily.h>
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\begin_code.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\begin_code.h
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\close_code.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\close_code.h
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_assert.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_assert.h
 	"SDL_config.h"
 	"begin_code.h"
 	<signal.h>
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_atomic.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_atomic.h
 	"SDL_stdinc.h"
 	"SDL_platform.h"
 	"begin_code.h"
 	<mbarrier.h>
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_audio.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_audio.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_endian.h"
@@ -3379,24 +3378,24 @@
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_error.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_error.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_endian.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_endian.h
 	"SDL_stdinc.h"
 	<endian.h>
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_mutex.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_mutex.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_thread.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_thread.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_atomic.h"
@@ -3405,18 +3404,18 @@
 	<process.h>
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_rwops.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_rwops.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_clipboard.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_clipboard.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_cpuinfo.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_cpuinfo.h
 	"SDL_stdinc.h"
 	<intrin.h>
 	<intrin.h>
@@ -3428,7 +3427,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_events.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_events.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
@@ -3442,7 +3441,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_video.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_video.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -3450,12 +3449,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_pixels.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_pixels.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_rect.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_rect.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_pixels.h"
@@ -3463,7 +3462,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_surface.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_surface.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -3472,11 +3471,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_blendmode.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_blendmode.h
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_keyboard.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_keyboard.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_keycode.h"
@@ -3484,27 +3483,27 @@
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_keycode.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_keycode.h
 	"SDL_stdinc.h"
 	"SDL_scancode.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_scancode.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_scancode.h
 	"SDL_stdinc.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_mouse.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_mouse.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_joystick.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_joystick.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_gamecontroller.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_gamecontroller.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_rwops.h"
@@ -3512,11 +3511,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_quit.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_quit.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_gesture.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_gesture.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
@@ -3524,60 +3523,60 @@
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_touch.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_touch.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_filesystem.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_filesystem.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_haptic.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_haptic.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_joystick.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_hints.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_hints.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_loadso.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_loadso.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_log.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_log.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_messagebox.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_messagebox.h
 	"SDL_stdinc.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_power.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_power.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_render.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_render.h
 	"SDL_stdinc.h"
 	"SDL_rect.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_system.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_system.h
 	"SDL_stdinc.h"
 	"SDL_keyboard.h"
 	"SDL_render.h"
@@ -3585,24 +3584,24 @@
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_timer.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_timer.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_version.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_version.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_opengl.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_opengl.h
 	"SDL_config.h"
 	"gl_mangle.h"
 	<windows.h>
 	"SDL_opengl_glext.h"
 
-1451768294 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_opengl_glext.h
+1451768294 d:\cours polytech\projetcoop\projet_support_codeblocks\include\sdl2\sdl_opengl_glext.h
 	<windows.h>
 	<stddef.h>
 	<inttypes.h>
@@ -3612,20 +3611,751 @@
 	<stdint.h>
 	<inttypes.h>
 
-1560534874 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\forms.h
+1497621053 d:\cours polytech\projetcoop\projet_support_codeblocks\include\forms.h
 	"geometry.h"
 	"animation.h"
 
-1560534893 source:c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\src\forms.cpp
+1560342145 source:d:\cours polytech\projetcoop\projet_support_codeblocks\src\forms.cpp
 	<cmath>
 	<SDL2/SDL_opengl.h>
 	<GL/GLU.h>
 	"forms.h"
 
-1466445814 source:c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\src\geometry.cpp
+1466442214 source:d:\cours polytech\projetcoop\projet_support_codeblocks\src\geometry.cpp
 	<cmath>
 	"geometry.h"
 
-1560531193 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\projet.h
+1466440341 source:c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\src\animation.cpp
+	"animation.h"
+
+1466440341 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\animation.h
+	"geometry.h"
+
+1466425944 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\geometry.h
+	<iostream>
+
+1466442214 source:c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\src\geometry.cpp
+	<cmath>
+	"geometry.h"
+
+1560525529 source:c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\src\first_prog.cpp
+	<iostream>
+	<cmath>
+	<SDL2/SDL.h>
+	<SDL2/SDL_opengl.h>
+	<GL/GLU.h>
+	"geometry.h"
 	"forms.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_haptic.h"
+	"SDL_hints.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<iconv.h>
+	<sal.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_platform.h
+	"AvailabilityMacros.h"
+	"TargetConditionals.h"
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\begin_code.h
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\close_code.h
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_assert.h
+	"SDL_config.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	<mbarrier.h>
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<altivec.h>
+	<mmintrin.h>
+	<mm3dnow.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_opengl.h
+	"SDL_config.h"
+	"gl_mangle.h"
+	<windows.h>
+	"SDL_opengl_glext.h"
+
+1451768294 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_opengl_glext.h
+	<windows.h>
+	<stddef.h>
+	<inttypes.h>
+	<inttypes.h>
+	<inttypes.h>
+	<stdint.h>
+	<stdint.h>
+	<inttypes.h>
+
+1560529068 c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\include\forms.h
+	"geometry.h"
+	"animation.h"
+
+1560529117 source:c:\users\nbourne\desktop\projetcoop\projet_support_codeblocks\src\forms.cpp
+	<cmath>
+	<SDL2/SDL_opengl.h>
+	<GL/GLU.h>
+	"forms.h"
+
+1466443941 source:c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\src\animation.cpp
+	"animation.h"
+
+1466443941 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\animation.h
+	"geometry.h"
+
+1466429544 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\geometry.h
+	<iostream>
+
+1560537008 source:c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\src\forms.cpp
+	<cmath>
+	<SDL2/SDL_opengl.h>
+	<GL/GLU.h>
+	"forms.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_opengl.h
+	"SDL_config.h"
+	"gl_mangle.h"
+	<windows.h>
+	"SDL_opengl_glext.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_platform.h
+	"AvailabilityMacros.h"
+	"TargetConditionals.h"
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\begin_code.h
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\close_code.h
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_opengl_glext.h
+	<windows.h>
+	<stddef.h>
+	<inttypes.h>
+	<inttypes.h>
+	<inttypes.h>
+	<stdint.h>
+	<stdint.h>
+	<inttypes.h>
+
+1560532668 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\forms.h
+	"geometry.h"
+	"animation.h"
+
+1466445814 source:c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\src\geometry.cpp
+	<cmath>
+	"geometry.h"
+
+1560536872 source:c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\src\first_prog.cpp
+	<iostream>
+	<cmath>
+	<SDL2/SDL.h>
+	<SDL2/SDL_opengl.h>
+	<GL/GLU.h>
+	"geometry.h"
+	"forms.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_haptic.h"
+	"SDL_hints.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<iconv.h>
+	<sal.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_assert.h
+	"SDL_config.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	<mbarrier.h>
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<altivec.h>
+	<mmintrin.h>
+	<mm3dnow.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451768294 c:\users\echowin\desktop\projetcoop\projet_support_codeblocks\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
 
