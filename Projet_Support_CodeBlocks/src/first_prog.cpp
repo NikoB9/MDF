@@ -4,11 +4,17 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
 #include <GL/GLU.h>
+#include <math.h>
 
 // Module for space geometry
 #include "geometry.h"
 // Module for generating and rendering forms
 #include "forms.h"
+//Include Charge
+#include "projet.h"
+
+
+#define PI 3.14159265
 
 
 using namespace std;
@@ -18,11 +24,13 @@ using namespace std;
 /* Constants and functions declarations                                    */
 /***************************************************************************/
 // Screen dimension constants
-const int SCREEN_WIDTH = 1000;
+const int SCREEN_WIDTH = 1040;
 const int SCREEN_HEIGHT = 700;
 
+
+
 // Max number of forms : static allocation
-const int MAX_FORMS_NUMBER = 20;
+const int MAX_FORMS_NUMBER = 10;
 
 // Animation actualization delay (in ms) => 100 updates per second
 const Uint32 ANIM_DELAY = 10;
@@ -38,7 +46,7 @@ bool initGL();
 void update(Form* formlist[MAX_FORMS_NUMBER], double delta_t);
 
 // Renders scene to the screen
-const void render(Form* formlist[MAX_FORMS_NUMBER], const Point &cam_pos, const Point &cam_dir, const Point &cam_h);
+const void render(Form* formlist[MAX_FORMS_NUMBER], const Point &cam_pos);
 
 // Frees media and shuts down SDL
 void close(SDL_Window** window);
@@ -138,6 +146,7 @@ bool initGL()
 
     glEnable(GL_DEPTH_TEST);
 
+
     return success;
 }
 
@@ -152,43 +161,41 @@ void update(Form* formlist[MAX_FORMS_NUMBER], double delta_t)
     }
 }
 
-const void render(Form* formlist[MAX_FORMS_NUMBER], const Point &cam_pos, const Point &cam_dir, const Point &cam_h)
+const void render(Form* formlist[MAX_FORMS_NUMBER], const Point &cam_pos)
 {
     // Clear color buffer and Z-Buffer
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
     // Initialize Modelview Matrix
     glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
 
     // Set the camera position and parameters
-    gluLookAt(cam_pos.x,cam_pos.y,cam_pos.z,   cam_dir.x,cam_dir.y,cam_dir.z,    cam_h.x,cam_h.y,cam_h.z);
+    gluLookAt(cam_pos.x,cam_pos.y,cam_pos.z, 0.0,0.0,0.0, 0.0,1.0,0.0);
     // Isometric view
     glRotated(-45, 0, 1, 0);
     glRotated(30, 1, 0, -1);
 
     // X, Y and Z axis
-    glScaled(0.5,0.5,0.5);
-
+    glScaled(0.5,0.5,.5);
     glPushMatrix(); // Preserve the camera viewing point for further forms
     // Render the coordinates system
     glBegin(GL_LINES);
     {
         glColor3f(1.0f, 0.0f, 0.0f);
         glVertex3i(0, 0, 0);
-        glVertex3i(5, 0, 0);
+        glVertex3i(10, 0, 0);
         glColor3f(0.0f, 1.0f, 0.0f);
         glVertex3i(0, 0, 0);
-        glVertex3i(0, 5, 0);
+        glVertex3i(0, 10, 0);
         glColor3f(0.0f, 0.0f, 1.0f);
         glVertex3i(0, 0, 0);
-        glVertex3i(0, 0, 5);
+        glVertex3i(0, 0, 10);
     }
     glEnd();
     glPopMatrix(); // Restore the camera viewing point for next object
 
-    //Déplacer le centre de gravité du cube : barrycentre
-    //glTranslated(0,2,4);
+    //Translation du centre de gravité du cube
+    //glTranslated(0.0,2.0,4.0);
 
     // Render the list of forms
     unsigned short i = 0;
@@ -199,6 +206,7 @@ const void render(Form* formlist[MAX_FORMS_NUMBER], const Point &cam_pos, const 
         glPopMatrix(); // Restore the camera viewing point for next object
         i++;
     }
+
 }
 
 void close(SDL_Window** window)
@@ -239,11 +247,8 @@ int main(int argc, char* args[])
         SDL_Event event;
 
         // Camera position
-        Point camera_position(0, 5, -15);
-        // Rotation camera
-        Point camera_rotation(0, 0, 0);
-        // hauteur camera
-        Point camera_hauteur(0, 1, 0);
+        Point camera_position(1, 5, -10);
+        double theta=0.0, phi=0.0, rho=4.0;
 
         // The forms to render
         Form* forms_list[MAX_FORMS_NUMBER];
@@ -255,92 +260,58 @@ int main(int argc, char* args[])
         // Create here specific forms and add them to the list...
         // Don't forget to update the actual number_of_forms !
 
-        //Variables de définition du plateau
-        double hauteurContourPlateau = 2;
-        double longueurFaceExt = 20.;
-        double largeurFaceExt = 10.;
-        double profondeurFace = 0.5;
-        Color clBoard(0,0,255);
-        Color clBoardBase(255,0,0);
-        //FACE 1 EXTERIEUR PLATEAU
-        Parallepipede_face *firstCloseExtBoard = NULL;
-        firstCloseExtBoard = new Parallepipede_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, 0), longueurFaceExt, hauteurContourPlateau, profondeurFace, clBoard);
-        forms_list[number_of_forms] = firstCloseExtBoard;
-        number_of_forms++;
-        //FACE 2 EXTERIEUR PLATEAU
-        Parallepipede_face *secondCloseExtBoard = NULL;
-        secondCloseExtBoard = new Parallepipede_face(Vector(0,0,1), Vector(0,1,0), Point(0, 0, 0), largeurFaceExt, hauteurContourPlateau, profondeurFace, clBoard);
-        forms_list[number_of_forms] = secondCloseExtBoard;
-        number_of_forms++;
-        //FACE 3 EXTERIEUR PLATEAU
-        Parallepipede_face *thirdCloseExtBoard = NULL;
-        thirdCloseExtBoard = new Parallepipede_face(Vector(0,0,1), Vector(0,1,0), Point(longueurFaceExt, 0, 0), largeurFaceExt, hauteurContourPlateau, profondeurFace, clBoard);
-        forms_list[number_of_forms] = thirdCloseExtBoard;
-        number_of_forms++;
-        //FACE 4 EXTERIEUR PLATEAU
-        Parallepipede_face *fourthCloseExtBoard = NULL;
-        fourthCloseExtBoard = new Parallepipede_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, largeurFaceExt), longueurFaceExt, hauteurContourPlateau, profondeurFace, clBoard);
-        forms_list[number_of_forms] = fourthCloseExtBoard;
+        Cube_face *pfirst_face = NULL;
+        pfirst_face = new Cube_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, 0));
+        forms_list[number_of_forms] = pfirst_face;
         number_of_forms++;
 
-        //profondeur
-        Parallepipede_face *depthF1 = NULL;
-        depthF1 = new Parallepipede_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, profondeurFace), longueurFaceExt, hauteurContourPlateau, profondeurFace, clBoard);
-        forms_list[number_of_forms] = depthF1;
-        number_of_forms++;
-        Parallepipede_face *depthF2 = NULL;
-        depthF2 = new Parallepipede_face(Vector(0,0,1), Vector(0,1,0), Point(profondeurFace, 0, 0), largeurFaceExt, hauteurContourPlateau, profondeurFace, clBoard);
-        forms_list[number_of_forms] = depthF2;
-        number_of_forms++;
-        Parallepipede_face *depthF3 = NULL;
-        depthF3 = new Parallepipede_face(Vector(0,0,1), Vector(0,1,0), Point(longueurFaceExt-profondeurFace, 0, 0), largeurFaceExt, hauteurContourPlateau, profondeurFace, clBoard);
-        forms_list[number_of_forms] = depthF3;
-        number_of_forms++;
-        Parallepipede_face *depthF4 = NULL;
-        depthF4 = new Parallepipede_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, largeurFaceExt-profondeurFace), longueurFaceExt, hauteurContourPlateau, profondeurFace, clBoard);
-        forms_list[number_of_forms] = depthF4;
+        Cube_face *pfirst_face1 = NULL;
+        pfirst_face1 = new Cube_face(Vector(1,0,0), Vector(0,0,1), Point(0, 0, 0));
+        forms_list[number_of_forms] = pfirst_face1;
         number_of_forms++;
 
-        //DESSUS DES MURS DE LA PROFONDEUR
-        Parallepipede_face *roofF1 = NULL;
-        depthF1 = new Parallepipede_face(Vector(1,0,0), Vector(0,0,1), Point(0, hauteurContourPlateau, 0), longueurFaceExt, profondeurFace, profondeurFace, clBoard);
-        forms_list[number_of_forms] = depthF1;
-        number_of_forms++;
-        Parallepipede_face *roofF2 = NULL;
-        roofF2 = new Parallepipede_face(Vector(0,0,1), Vector(1,0,0), Point(0, hauteurContourPlateau, 0), largeurFaceExt, profondeurFace, profondeurFace, clBoard);
-        forms_list[number_of_forms] = roofF2;
-        number_of_forms++;
-        Parallepipede_face *roofF3 = NULL;
-        roofF3 = new Parallepipede_face(Vector(0,0,1), Vector(1,0,0), Point(longueurFaceExt-profondeurFace, hauteurContourPlateau, 0), largeurFaceExt, profondeurFace, profondeurFace, clBoard);
-        forms_list[number_of_forms] = roofF3;
-        number_of_forms++;
-        Parallepipede_face *roofF4 = NULL;
-        roofF4 = new Parallepipede_face(Vector(1,0,0), Vector(0,0,1), Point(0, hauteurContourPlateau, largeurFaceExt-profondeurFace), longueurFaceExt, profondeurFace, profondeurFace, clBoard);
-        forms_list[number_of_forms] = roofF4;
+        Cube_face *pfirst_face2 = NULL;
+        pfirst_face2 = new Cube_face(Vector(0,1,0), Vector(0,0, 1), Point(0, 0, 0));
+        forms_list[number_of_forms] = pfirst_face2;
         number_of_forms++;
 
-        //PLATEAU
-        Parallepipede_face *boardBase = NULL;
-        boardBase = new Parallepipede_face(Vector(1,0,0), Vector(0,0,1), Point(0, 0, 0), longueurFaceExt, largeurFaceExt, profondeurFace, clBoardBase);
-        forms_list[number_of_forms] = boardBase;
+        Cube_face *pfirst_face3 = NULL;
+        pfirst_face3 = new Cube_face(Vector(0,1,0), Vector(0,0,1), Point(1, 0, 0));
+        forms_list[number_of_forms] = pfirst_face3;
         number_of_forms++;
 
-
-        //Gère la rotation des sphères
-        double theta=0.0;
-        //Satellite1
-        Color clrSt1(0,218,0);
-        Sphere *satellite1 = NULL;
-        satellite1 = new Sphere(0.5, clrSt1, Point(2, 0, 0));
-        forms_list[number_of_forms] = satellite1;
+        Cube_face *pfirst_face4 = NULL;
+        pfirst_face4 = new Cube_face(Vector(1,0,0), Vector(0,0,1), Point(0, 1, 0));
+        forms_list[number_of_forms] = pfirst_face4;
         number_of_forms++;
 
-        //Satellite2
-        Color clrSt2(2, 218, 0);
-        Sphere *satellite2 = NULL;
-        satellite2 = new Sphere(0.5, clrSt2, Point(0, 2, 0));
-        forms_list[number_of_forms] = satellite2;
+        Cube_face *pfirst_face5 = NULL;
+        pfirst_face5 = new Cube_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, 1));
+        forms_list[number_of_forms] = pfirst_face5;
         number_of_forms++;
+
+        Sphere *psphere1 = NULL;
+        Color c1(0, 255, 0);
+        Point p(-2,3,0);
+        //double theta = 0;
+        psphere1 = new Sphere(0.5, c1, p);
+        forms_list[number_of_forms] = psphere1;
+        int idSphere=number_of_forms;
+        number_of_forms++;
+
+        Sphere *psphere2 = NULL;
+        Color c2(255, 0, 0);
+        Point p1(3,2,0);
+        psphere2 = new Sphere(.5, c2, p1);
+        /*forms_list[number_of_forms] = psphere2;
+        number_of_forms++;*/
+
+        Charge *pCharge1 = NULL;
+        pCharge1 = new Charge(3.0,Sphere(.5, c2, p1), Vector(p,p1), 1);
+        forms_list[number_of_forms] = pCharge1;
+        number_of_forms++;
+
+        glScaled(0.5,0.5,0.5);
 
         // Get first "current time"
         previous_time = SDL_GetTicks();
@@ -359,6 +330,7 @@ int main(int argc, char* args[])
                 case SDL_QUIT:
                     quit = true;
                     break;
+
                 case SDL_KEYDOWN:
                     // Handle key pressed with current mouse position
                     SDL_GetMouseState( &x, &y );
@@ -366,144 +338,29 @@ int main(int argc, char* args[])
                     switch(key_pressed)
                     {
                     // Quit the program when 'q' or Escape keys are pressed
-                    case SDLK_w:
+                    //case SDLK_q:
+                    case SDLK_UP:
+                        phi-=1* PI / 180.0;
+                        std::cout<<"rho : "<<rho<<"  theta : "<<theta<<"   phi  : "<<phi<<" \n";
+                        std::cout<<"x : "<<camera_position.x<<"  y:"<<camera_position.y<<"  z:"<<camera_position.z<<"\n";
+                        break;
+                    case SDLK_DOWN:
+                        phi+=1* PI / 180.0;
+                        std::cout<<"rho : "<<rho<<"  theta : "<<theta<<"   phi  : "<<phi<<" \n";
+                        std::cout<<"x : "<<camera_position.x<<"  y:"<<camera_position.y<<"  z:"<<camera_position.z<<"\n";
+                        break;
+                    case SDLK_RIGHT:
+                        theta-=1* PI / 180.0;
+                        std::cout<<"rho : "<<rho<<"  theta : "<<theta<<"   phi  : "<<phi<<" \n";
+                        std::cout<<"x : "<<camera_position.x<<"  y:"<<camera_position.y<<"  z:"<<camera_position.z<<"\n";
+                        break;
+                    case SDLK_LEFT:
+                        theta+=1* PI / 180.0;
+                        std::cout<<"rho : "<<rho<<"  theta : "<<theta<<"   phi  : "<<phi<<" \n";
+                        std::cout<<"x : "<<camera_position.x<<"  y:"<<camera_position.y<<"  z:"<<camera_position.z<<"\n";
+                        break;
                     case SDLK_ESCAPE:
                         quit = true;
-                        break;
-
-                    //Modif Position camera
-                    case SDLK_a :
-                        camera_position.x = camera_position.x + 1;
-                        cout << "position : "  << camera_position.x << ", " << camera_position.y << ", " << camera_position.z << endl;
-                        cout << "rotation : "  << camera_rotation.x << ", " << camera_rotation.y << ", " << camera_rotation.z << endl;
-                        cout << "rotation : "  << camera_hauteur.x << ", " << camera_hauteur.y << ", " << camera_hauteur.z << endl;
-                        cout << endl << "______________-----NEXT-----______________"  << endl;
-                        break;
-                    case SDLK_q :
-                        camera_position.x = camera_position.x - 1;
-                        cout << "position : "  << camera_position.x << ", " << camera_position.y << ", " << camera_position.z << endl;
-                        cout << "rotation : "  << camera_rotation.x << ", " << camera_rotation.y << ", " << camera_rotation.z << endl;
-                        cout << "rotation : "  << camera_hauteur.x << ", " << camera_hauteur.y << ", " << camera_hauteur.z << endl;
-                        cout << endl << "______________-----NEXT-----______________"  << endl;
-                        break;
-                    case SDLK_z :
-                        camera_position.z = camera_position.z + 1;
-                        cout << "position : "  << camera_position.x << ", " << camera_position.y << ", " << camera_position.z << endl;
-                        cout << "rotation : "  << camera_rotation.x << ", " << camera_rotation.y << ", " << camera_rotation.z << endl;
-                        cout << "rotation : "  << camera_hauteur.x << ", " << camera_hauteur.y << ", " << camera_hauteur.z << endl;
-                        cout << endl << "______________-----NEXT-----______________"  << endl;
-                        break;
-                    case SDLK_s :
-                        camera_position.z = camera_position.z - 1;
-                        cout << "position : "  << camera_position.x << ", " << camera_position.y << ", " << camera_position.z << endl;
-                        cout << "rotation : "  << camera_rotation.x << ", " << camera_rotation.y << ", " << camera_rotation.z << endl;
-                        cout << "rotation : "  << camera_hauteur.x << ", " << camera_hauteur.y << ", " << camera_hauteur.z << endl;
-                        cout << endl << "______________-----NEXT-----______________"  << endl;
-                        break;
-                    case SDLK_e :
-                        camera_position.y = camera_position.y + 1;
-                        cout << "position : "  << camera_position.x << ", " << camera_position.y << ", " << camera_position.z << endl;
-                        cout << "rotation : "  << camera_rotation.x << ", " << camera_rotation.y << ", " << camera_rotation.z << endl;
-                        cout << "rotation : "  << camera_hauteur.x << ", " << camera_hauteur.y << ", " << camera_hauteur.z << endl;
-                        cout << endl << "______________-----NEXT-----______________"  << endl;
-                        break;
-                    case SDLK_d :
-                        camera_position.y = camera_position.y - 1;
-                        cout << "position : "  << camera_position.x << ", " << camera_position.y << ", " << camera_position.z << endl;
-                        cout << "rotation : "  << camera_rotation.x << ", " << camera_rotation.y << ", " << camera_rotation.z << endl;
-                        cout << "rotation : "  << camera_hauteur.x << ", " << camera_hauteur.y << ", " << camera_hauteur.z << endl;
-                        cout << endl << "______________-----NEXT-----______________"  << endl;
-                        break;
-
-                    //Modif Direction camera
-                    case SDLK_r :
-                        camera_rotation.x = camera_rotation.x + 1;
-                        cout << "position : "  << camera_position.x << ", " << camera_position.y << ", " << camera_position.z << endl;
-                        cout << "rotation : "  << camera_rotation.x << ", " << camera_rotation.y << ", " << camera_rotation.z << endl;
-                        cout << "rotation : "  << camera_hauteur.x << ", " << camera_hauteur.y << ", " << camera_hauteur.z << endl;
-                        cout << endl << "______________-----NEXT-----______________"  << endl;
-                        break;
-                    case SDLK_f :
-                        camera_rotation.x = camera_rotation.x - 1;
-                        cout << "position : "  << camera_position.x << ", " << camera_position.y << ", " << camera_position.z << endl;
-                        cout << "rotation : "  << camera_rotation.x << ", " << camera_rotation.y << ", " << camera_rotation.z << endl;
-                        cout << "rotation : "  << camera_hauteur.x << ", " << camera_hauteur.y << ", " << camera_hauteur.z << endl;
-                        cout << endl << "______________-----NEXT-----______________"  << endl;
-                        break;
-                    case SDLK_t :
-                        camera_rotation.z = camera_rotation.z + 1;
-                        cout << "position : "  << camera_position.x << ", " << camera_position.y << ", " << camera_position.z << endl;
-                        cout << "rotation : "  << camera_rotation.x << ", " << camera_rotation.y << ", " << camera_rotation.z << endl;
-                        cout << "rotation : "  << camera_hauteur.x << ", " << camera_hauteur.y << ", " << camera_hauteur.z << endl;
-                        cout << endl << "______________-----NEXT-----______________"  << endl;
-                        break;
-                    case SDLK_g :
-                        camera_rotation.z = camera_rotation.z - 1;
-                        cout << "position : "  << camera_position.x << ", " << camera_position.y << ", " << camera_position.z << endl;
-                        cout << "rotation : "  << camera_rotation.x << ", " << camera_rotation.y << ", " << camera_rotation.z << endl;
-                        cout << "rotation : "  << camera_hauteur.x << ", " << camera_hauteur.y << ", " << camera_hauteur.z << endl;
-                        cout << endl << "______________-----NEXT-----______________"  << endl;
-                        break;
-                    case SDLK_y :
-                        camera_rotation.y = camera_rotation.y + 1;
-                        cout << "position : "  << camera_position.x << ", " << camera_position.y << ", " << camera_position.z << endl;
-                        cout << "rotation : "  << camera_rotation.x << ", " << camera_rotation.y << ", " << camera_rotation.z << endl;
-                        cout << "rotation : "  << camera_hauteur.x << ", " << camera_hauteur.y << ", " << camera_hauteur.z << endl;
-                        cout << endl << "______________-----NEXT-----______________"  << endl;
-                        break;
-                    case SDLK_h :
-                        camera_rotation.y = camera_rotation.y - 1;
-                        cout << "position : "  << camera_position.x << ", " << camera_position.y << ", " << camera_position.z << endl;
-                        cout << "rotation : "  << camera_rotation.x << ", " << camera_rotation.y << ", " << camera_rotation.z << endl;
-                        cout << "rotation : "  << camera_hauteur.x << ", " << camera_hauteur.y << ", " << camera_hauteur.z << endl;
-                        cout << endl << "______________-----NEXT-----______________"  << endl;
-                        break;
-
-                    //Modif Hauteur camera
-                    case SDLK_u :
-                        camera_hauteur.x = camera_hauteur.x + 1;
-                        cout << "position : "  << camera_position.x << ", " << camera_position.y << ", " << camera_position.z << endl;
-                        cout << "rotation : "  << camera_rotation.x << ", " << camera_rotation.y << ", " << camera_rotation.z << endl;
-                        cout << "rotation : "  << camera_hauteur.x << ", " << camera_hauteur.y << ", " << camera_hauteur.z << endl;
-                        cout << endl << "______________-----NEXT-----______________"  << endl;
-                        break;
-                    case SDLK_j :
-                        camera_hauteur.x = camera_hauteur.x - 1;
-                        cout << "position : "  << camera_position.x << ", " << camera_position.y << ", " << camera_position.z << endl;
-                        cout << "rotation : "  << camera_rotation.x << ", " << camera_rotation.y << ", " << camera_rotation.z << endl;
-                        cout << "rotation : "  << camera_hauteur.x << ", " << camera_hauteur.y << ", " << camera_hauteur.z << endl;
-                        cout << endl << "______________-----NEXT-----______________"  << endl;
-                        break;
-                    case SDLK_i :
-                        camera_hauteur.z = camera_hauteur.z + 1;
-                        cout << "position : "  << camera_position.x << ", " << camera_position.y << ", " << camera_position.z << endl;
-                        cout << "rotation : "  << camera_rotation.x << ", " << camera_rotation.y << ", " << camera_rotation.z << endl;
-                        cout << "rotation : "  << camera_hauteur.x << ", " << camera_hauteur.y << ", " << camera_hauteur.z << endl;
-                        cout << endl << "______________-----NEXT-----______________"  << endl;
-                        break;
-                    case SDLK_k :
-                        camera_hauteur.z = camera_hauteur.z - 1;
-                        cout << "position : "  << camera_position.x << ", " << camera_position.y << ", " << camera_position.z << endl;
-                        cout << "rotation : "  << camera_rotation.x << ", " << camera_rotation.y << ", " << camera_rotation.z << endl;
-                        cout << "rotation : "  << camera_hauteur.x << ", " << camera_hauteur.y << ", " << camera_hauteur.z << endl;
-                        cout << endl << "______________-----NEXT-----______________"  << endl;
-                        break;
-                    case SDLK_o :
-                        camera_hauteur.y = camera_hauteur.y + 1;
-                        cout << "position : "  << camera_position.x << ", " << camera_position.y << ", " << camera_position.z << endl;
-                        cout << "rotation : "  << camera_rotation.x << ", " << camera_rotation.y << ", " << camera_rotation.z << endl;
-                        cout << "rotation : "  << camera_hauteur.x << ", " << camera_hauteur.y << ", " << camera_hauteur.z << endl;
-                        cout << endl << "______________-----NEXT-----______________"  << endl;
-                        break;
-                    case SDLK_l :
-                        camera_hauteur.y = camera_hauteur.y - 1;
-                        cout << "position : "  << camera_position.x << ", " << camera_position.y << ", " << camera_position.z << endl;
-                        cout << "rotation : "  << camera_rotation.x << ", " << camera_rotation.y << ", " << camera_rotation.z << endl;
-                        cout << "rotation : "  << camera_hauteur.x << ", " << camera_hauteur.y << ", " << camera_hauteur.z << endl;
-                        cout << endl << "______________-----NEXT-----______________"  << endl;
-                        break;
-
-                    default:
                         break;
                     }
                     break;
@@ -521,15 +378,14 @@ int main(int argc, char* args[])
                 update(forms_list, 1e-3 * elapsed_time); // International system units : seconds
             }
 
-            //modif positoin du disque
-            theta+=0.05;
-            //std::cout << "theta : " << theta;
-            satellite1->setPos(Point(2, cos(theta), sin(theta))) ;
-            satellite2->setPos(Point(cos(theta), 2, sin(theta))) ;
-
+            //Update Camera
+            //x = rho*sin(phi)*cos(theta)   y=rho*sin(phi)*sin(theta)   z=rho*cos(theta)
+            camera_position.x = rho*sin(phi)*cos(theta);
+            camera_position.z = rho*sin(phi)*sin(theta);
+            camera_position.y = rho*cos(theta);
 
             // Render the scene
-            render(forms_list, camera_position, camera_rotation, camera_hauteur);
+            render(forms_list, camera_position);
 
             // Update window screen
             SDL_GL_SwapWindow(gWindow);
