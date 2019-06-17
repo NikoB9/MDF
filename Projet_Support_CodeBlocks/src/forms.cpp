@@ -108,7 +108,7 @@ void Cube_face::render()
 }
 
 
-Parallepipede_face::Parallepipede_face(Vector v1, Vector v2, Point org, double l, double h, double d, Color cl)
+Parallepipede_face::Parallepipede_face(Vector v1, Vector v2, Point org, double l, double h, double d, GLuint mtexture)
 {
     vdir1 = 1.0 / v1.norm() * v1;
     vdir2 = 1.0 / v2.norm() * v2;
@@ -116,7 +116,7 @@ Parallepipede_face::Parallepipede_face(Vector v1, Vector v2, Point org, double l
     length = l;
     height = h;
     depth = d;
-    col = cl;
+    this->texture = mtexture;
 }
 
 
@@ -138,22 +138,25 @@ void Parallepipede_face::render()
 
     // dimension
     //glScaled(0.5,0.5,0.5);
+    glBindTexture(GL_TEXTURE_2D, texture);
+
 
     Form::render();
     glBegin(GL_QUADS);
     {
         //extérieur
         //glColor3f(1,1,0);
-        glColor3f(col.r, col.g, col.b);
+        glTexCoord2d(0,1);
+
         glVertex3d(p1.x, p1.y, p1.z);
         //glColor3f(0,1,1);
-        glColor3f(col.r, col.g, col.b);
+        glTexCoord2d(0,0);
         glVertex3d(p2.x, p2.y, p2.z);
         //glColor3f(1,0,1);
-        glColor3f(col.r, col.g, col.b);
+        glTexCoord2d(1,0);
         glVertex3d(p3.x, p3.y, p3.z);
         //glColor3f(0,1,0);
-        glColor3f(col.r, col.g, col.b);
+        glTexCoord2d(1,1);
         glVertex3d(p4.x, p4.y, p4.z);
     }
     glEnd();

@@ -46,10 +46,15 @@
 		<Unit filename="include/animation.h" />
 		<Unit filename="include/forms.h" />
 		<Unit filename="include/geometry.h" />
+		<Unit filename="include/sdlglutils.h" />
 		<Unit filename="src/animation.cpp" />
 		<Unit filename="src/first_prog.cpp" />
+		<Unit filename="src/fond1.jpg" />
+		<Unit filename="src/fond2.jpg" />
+		<Unit filename="src/fond3.jpg" />
 		<Unit filename="src/forms.cpp" />
 		<Unit filename="src/geometry.cpp" />
+		<Unit filename="src/sdlglutils.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

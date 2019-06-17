@@ -4368,14 +4368,17 @@
 1466429544 c:\users\echowin\desktop\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\geometry.h
 	<iostream>
 
-1560538085 source:c:\users\echowin\desktop\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\src\first_prog.cpp
+1560788734 source:c:\users\echowin\desktop\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\src\first_prog.cpp
 	<iostream>
 	<cmath>
 	<SDL2/SDL.h>
 	<SDL2/SDL_opengl.h>
 	<GL/GLU.h>
+	<math.h>
+	"sdlglutils.h"
 	"geometry.h"
 	"forms.h"
+	"projet.h"
 
 1451768294 c:\users\echowin\desktop\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl.h
 	"SDL_main.h"
@@ -4712,11 +4715,12 @@
 	<stdint.h>
 	<inttypes.h>
 
-1560778866 c:\users\echowin\desktop\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\forms.h
+1560787677 c:\users\echowin\desktop\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\forms.h
 	"geometry.h"
 	"animation.h"
+	"sdlglutils.h"
 
-1560778719 source:c:\users\echowin\desktop\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\src\forms.cpp
+1560787943 source:c:\users\echowin\desktop\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\src\forms.cpp
 	<cmath>
 	<SDL2/SDL_opengl.h>
 	<GL/GLU.h>
@@ -4725,4 +4729,25 @@
 1466445814 source:c:\users\echowin\desktop\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\src\geometry.cpp
 	<cmath>
 	"geometry.h"
+
+1560781099 c:\users\echowin\desktop\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdlglutils.h
+	<GL/gl.h>
+	<SDL2/SDL.h>
+
+1560537922 c:\users\echowin\desktop\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\projet.h
+	"forms.h"
+
+1560782130 source:c:\users\echowin\desktop\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\src\sdlglutils.cpp
+	"sdlglutils.h"
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<GL/glu.h>
+	<cstring>
+	<cstdlib>
+
+1451803974 c:\users\echowin\desktop\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
 
