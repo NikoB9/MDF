@@ -158,3 +158,23 @@ void Parallepipede_face::render()
     }
     glEnd();
 }
+
+Charge::Charge(double _charge, Sphere _sphere, Vector _force, int _bloquage)
+{
+    chargeValue = _charge;
+    sphere = _sphere;
+    force = _force;
+    bloquage = _bloquage;
+   // chargeFictive = _chargeFictive;
+}
+
+//Render de la charge
+void Charge::render()
+{
+    this->sphere.render();
+}
+
+void Charge::update(double delta_t)
+{
+    // Nothing to do here, animation update is done in child class method
+}

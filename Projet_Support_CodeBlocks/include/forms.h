@@ -85,4 +85,38 @@ public:
     void render();
 };
 
+
+// Charges
+class Charge: public Form
+{
+protected:
+    //charge associ�e
+    double chargeValue;
+    //sph�re de repr�sentation
+    Sphere sphere;
+    //force subi par la charge
+    Vector force;
+    //Si 1 la charge est fig�e dans l'espace, sinon elle bouge
+    bool bloquage;
+    //Charge fictive de l'ensemble des autres charges r�unie en une charge.
+    //Charge chargeFictive;
+public:
+    //constructor
+    Charge(double charge = 0.0, Sphere _sphere = Sphere(),Vector _force = Vector(0,0,0),
+             int _bloquage = 1);
+    void render();
+    void update(double delta_t);
+
+    //getter chargeValue
+    //double getCharge(){return charge;}
+    //setter chargeValue
+   // void setCharge(double _charge){chargeValue=_charge;}
+    //getter force
+    //Vector getForce(){return force;}
+    //setter force
+    //setter charge fictive
+    //setter charge force
+};
+
+
 #endif // FORMS_H_INCLUDED
