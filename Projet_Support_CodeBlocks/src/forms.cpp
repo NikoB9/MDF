@@ -54,14 +54,13 @@ return (float)(double(rand()) / (double(RAND_MAX) + 1.0));
 Sphere::Sphere(int a){
     //Crée une sphère de manière aléatoire
     //Init random generator
-    srand(time(NULL));
     radius = .5;
     Color temp(random(),random(),random());
     col = temp;
-    pos.x = rand()%10+3;
-    //std::cout << "longueur plateur : " << longueurFaceExt;
+    //rand()%(borne _maximale - borne_minimale) + borne_minimale;
+    pos.x = rand()%(int(longueurFaceExt)-1)+1;
     pos.y=0.5;
-    pos.z = rand()%5+2;
+    pos.z = rand()%(int(largeurFaceExt)-1)+1;
     //TODO LES LIMITATIONS
 }
 
@@ -254,10 +253,7 @@ ContenerCharges::ContenerCharges(int numberOfCharge){
     this->numberOfCharge = numberOfCharge;
 
     for(size_t i=0;i<this->numberOfCharge;i++){
-        //Charge(double charge = 0.0, Sphere _sphere = Sphere(), Vector _force = Vector(),
-        //     int _bloquage = 1, Vector vectPorteur=Vector());
-        //Charge *temp = ;
-        tab.push_back(new Charge(rand()%2*pow(-1,rand()), Sphere(1), Vector(), rand()%2, Vector()));
+        tab.push_back(new Charge(rand()%2*pow(-1,rand()), Sphere(0), Vector(), rand()%2, Vector()));
     }
 }
 

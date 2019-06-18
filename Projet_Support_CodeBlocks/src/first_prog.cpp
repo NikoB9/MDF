@@ -34,7 +34,7 @@ const int SCREEN_WIDTH = 1040;
 const int SCREEN_HEIGHT = 700;
 
 // Max number of forms : static allocation
-const int MAX_FORMS_NUMBER = 30;
+const int MAX_FORMS_NUMBER = 40;
 
 // Animation actualization delay (in ms) => 100 updates per second
 const Uint32 ANIM_DELAY = 10;
@@ -248,6 +248,9 @@ int main(int argc, char* args[])
     // OpenGL context
     SDL_GLContext gContext;
 
+    //aléatoire active
+    srand(time(NULL));
+
 
     // Start up SDL and create window
     if( !init(&gWindow, &gContext))
@@ -418,15 +421,16 @@ int main(int argc, char* args[])
 
         //Création et positionner les charges
         ContenerCharges *contener=NULL;
-        contener = new ContenerCharges(5);
-        //forms_list[number_of_forms]=contener->getTab().at(i);
-        //number_of_forms++;
-        //std::cout << "taille tableau : " << contener->getTab().size();
+        contener = new ContenerCharges(15);
 
-        for(size_t i=0; i<5;i++){
+        for(size_t i=0; i<contener->getTab().size();i++){
 
             forms_list[number_of_forms]=contener->getTab().at(i);
             number_of_forms++;
+
+            /*std::cout << "position sphere n° " << i << ":\n-x : " << contener->getTab().at(i)->getChargePos().x
+            << "\n-y : " << contener->getTab().at(i)->getChargePos().y
+            << "\n-z : " << contener->getTab().at(i)->getChargePos().z << std::endl;*/
         }
 
 
