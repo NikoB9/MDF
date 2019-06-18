@@ -5,6 +5,7 @@
 #include "geometry.h"
 #include "animation.h"
 #include <vector>
+#include "sdlglutils.h"
 
 
 class Color
@@ -82,10 +83,11 @@ class Parallepipede_face : public Form
 private :
     Vector vdir1, vdir2;
     double length, height, depth;
+    GLuint texture;
 public:
     Parallepipede_face(Vector v1 = Vector(1,0,0), Vector v2 = Vector(0,0,1),
           Point org = Point(), double length = 1.0, double height = 1.0, double depth = 0.0,
-          Color cl = Color());
+          GLuint texture = loadTexture("./textures/02.jpg"));
     void update(double delta_t);
     void render();
 };

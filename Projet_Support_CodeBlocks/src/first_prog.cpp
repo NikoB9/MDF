@@ -6,6 +6,7 @@
 #include <GL/GLU.h>
 #include <math.h>
 #include <vector>
+#include "sdlglutils.h"
 
 #include <ctime>    // For time()
 #include <cstdlib>  // For srand() and rand()
@@ -40,11 +41,11 @@ const Uint32 ANIM_DELAY = 10;
 
 //Variables de définition du plateau
 const double hauteurContourPlateau = 2;
-const double longueurFaceExt = 20.;
-const double largeurFaceExt = 10.;
-const double profondeurFace = 0.5;
-const Color clBoard(0,0,255);
-const Color clBoardBase(255,0,0);
+const double longueurFaceExt = 30.;
+const double largeurFaceExt = 15.;
+const double epaisseurFace = 0.5;
+//const Color clBoard(0,0,255);
+//const Color clBoardBase(255,0,0);
 //const GLuint texture_sol = loadTexture("ma_texture.jpg");
 
 
@@ -264,7 +265,13 @@ int main(int argc, char* args[])
 
         // Camera position
         Point camera_position(1, 5, -10);
-        double theta=1.61087, phi=1.5061, rho=11.0;
+        double theta=1.61087, phi=1.5061, rho=1.;
+        if(longueurFaceExt > largeurFaceExt){
+            rho = rho + longueurFaceExt/2;
+        }
+        else{
+            rho = rho + largeurFaceExt/2;
+        }
         // Rotation camera
         Point camera_rotation(0, 0, 0);
         // hauteur camera
@@ -281,66 +288,71 @@ int main(int argc, char* args[])
         // Don't forget to update the actual number_of_forms !
 
 
+        //TEXTURES
+        GLuint texture_sol = loadTexture("./textures/02.jpg");
+        GLuint texture_mur = loadTexture("./textures/vecteur7.jpg");
+
+
         //FACE 1 EXTERIEUR PLATEAU
         Parallepipede_face *firstCloseExtBoard = NULL;
-        firstCloseExtBoard = new Parallepipede_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, 0), longueurFaceExt, hauteurContourPlateau, profondeurFace, clBoard);
+        firstCloseExtBoard = new Parallepipede_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, 0), longueurFaceExt, hauteurContourPlateau, epaisseurFace, texture_mur);
         forms_list[number_of_forms] = firstCloseExtBoard;
         number_of_forms++;
         //FACE 2 EXTERIEUR PLATEAU
         Parallepipede_face *secondCloseExtBoard = NULL;
-        secondCloseExtBoard = new Parallepipede_face(Vector(0,0,1), Vector(0,1,0), Point(0, 0, 0), largeurFaceExt, hauteurContourPlateau, profondeurFace, clBoard);
+        secondCloseExtBoard = new Parallepipede_face(Vector(0,0,1), Vector(0,1,0), Point(0, 0, 0), largeurFaceExt, hauteurContourPlateau, epaisseurFace, texture_mur);
         forms_list[number_of_forms] = secondCloseExtBoard;
         number_of_forms++;
         //FACE 3 EXTERIEUR PLATEAU
         Parallepipede_face *thirdCloseExtBoard = NULL;
-        thirdCloseExtBoard = new Parallepipede_face(Vector(0,0,1), Vector(0,1,0), Point(longueurFaceExt, 0, 0), largeurFaceExt, hauteurContourPlateau, profondeurFace, clBoard);
+        thirdCloseExtBoard = new Parallepipede_face(Vector(0,0,1), Vector(0,1,0), Point(longueurFaceExt, 0, 0), largeurFaceExt, hauteurContourPlateau, epaisseurFace, texture_mur);
         forms_list[number_of_forms] = thirdCloseExtBoard;
         number_of_forms++;
         //FACE 4 EXTERIEUR PLATEAU
         Parallepipede_face *fourthCloseExtBoard = NULL;
-        fourthCloseExtBoard = new Parallepipede_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, largeurFaceExt), longueurFaceExt, hauteurContourPlateau, profondeurFace, clBoard);
+        fourthCloseExtBoard = new Parallepipede_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, largeurFaceExt), longueurFaceExt, hauteurContourPlateau, epaisseurFace, texture_mur);
         forms_list[number_of_forms] = fourthCloseExtBoard;
         number_of_forms++;
 
         //profondeur
         Parallepipede_face *depthF1 = NULL;
-        depthF1 = new Parallepipede_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, profondeurFace), longueurFaceExt, hauteurContourPlateau, profondeurFace, clBoard);
+        depthF1 = new Parallepipede_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, epaisseurFace), longueurFaceExt, hauteurContourPlateau, epaisseurFace, texture_mur);
         forms_list[number_of_forms] = depthF1;
         number_of_forms++;
         Parallepipede_face *depthF2 = NULL;
-        depthF2 = new Parallepipede_face(Vector(0,0,1), Vector(0,1,0), Point(profondeurFace, 0, 0), largeurFaceExt, hauteurContourPlateau, profondeurFace, clBoard);
+        depthF2 = new Parallepipede_face(Vector(0,0,1), Vector(0,1,0), Point(epaisseurFace, 0, 0), largeurFaceExt, hauteurContourPlateau, epaisseurFace, texture_mur);
         forms_list[number_of_forms] = depthF2;
         number_of_forms++;
         Parallepipede_face *depthF3 = NULL;
-        depthF3 = new Parallepipede_face(Vector(0,0,1), Vector(0,1,0), Point(longueurFaceExt-profondeurFace, 0, 0), largeurFaceExt, hauteurContourPlateau, profondeurFace, clBoard);
+        depthF3 = new Parallepipede_face(Vector(0,0,1), Vector(0,1,0), Point(longueurFaceExt-epaisseurFace, 0, 0), largeurFaceExt, hauteurContourPlateau, epaisseurFace, texture_mur);
         forms_list[number_of_forms] = depthF3;
         number_of_forms++;
         Parallepipede_face *depthF4 = NULL;
-        depthF4 = new Parallepipede_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, largeurFaceExt-profondeurFace), longueurFaceExt, hauteurContourPlateau, profondeurFace, clBoard);
+        depthF4 = new Parallepipede_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, largeurFaceExt-epaisseurFace), longueurFaceExt, hauteurContourPlateau, epaisseurFace, texture_mur);
         forms_list[number_of_forms] = depthF4;
         number_of_forms++;
 
         //DESSUS DES MURS DE LA PROFONDEUR
         Parallepipede_face *roofF1 = NULL;
-        roofF1 = new Parallepipede_face(Vector(1,0,0), Vector(0,0,1), Point(0, hauteurContourPlateau, 0), longueurFaceExt, profondeurFace, profondeurFace, clBoard);
+        roofF1 = new Parallepipede_face(Vector(1,0,0), Vector(0,0,1), Point(0, hauteurContourPlateau, 0), longueurFaceExt, epaisseurFace, epaisseurFace, texture_mur);
         forms_list[number_of_forms] = roofF1;
         number_of_forms++;
         Parallepipede_face *roofF2 = NULL;
-        roofF2 = new Parallepipede_face(Vector(0,0,1), Vector(1,0,0), Point(0, hauteurContourPlateau, 0), largeurFaceExt, profondeurFace, profondeurFace, clBoard);
+        roofF2 = new Parallepipede_face(Vector(0,0,1), Vector(1,0,0), Point(0, hauteurContourPlateau, 0), largeurFaceExt, epaisseurFace, epaisseurFace, texture_mur);
         forms_list[number_of_forms] = roofF2;
         number_of_forms++;
         Parallepipede_face *roofF3 = NULL;
-        roofF3 = new Parallepipede_face(Vector(0,0,1), Vector(1,0,0), Point(longueurFaceExt-profondeurFace, hauteurContourPlateau, 0), largeurFaceExt, profondeurFace, profondeurFace, clBoard);
+        roofF3 = new Parallepipede_face(Vector(0,0,1), Vector(1,0,0), Point(longueurFaceExt-epaisseurFace, hauteurContourPlateau, 0), largeurFaceExt, epaisseurFace, epaisseurFace, texture_mur);
         forms_list[number_of_forms] = roofF3;
         number_of_forms++;
         Parallepipede_face *roofF4 = NULL;
-        roofF4 = new Parallepipede_face(Vector(1,0,0), Vector(0,0,1), Point(0, hauteurContourPlateau, largeurFaceExt-profondeurFace), longueurFaceExt, profondeurFace, profondeurFace, clBoard);
+        roofF4 = new Parallepipede_face(Vector(1,0,0), Vector(0,0,1), Point(0, hauteurContourPlateau, largeurFaceExt-epaisseurFace), longueurFaceExt, epaisseurFace, epaisseurFace, texture_mur);
         forms_list[number_of_forms] = roofF4;
         number_of_forms++;
 
         //PLATEAU
         Parallepipede_face *boardBase = NULL;
-        boardBase = new Parallepipede_face(Vector(1,0,0), Vector(0,0,1), Point(0, 0, 0), longueurFaceExt, largeurFaceExt, profondeurFace, clBoardBase);
+        boardBase = new Parallepipede_face(Vector(1,0,0), Vector(0,0,1), Point(0, 0, 0), longueurFaceExt, largeurFaceExt, epaisseurFace, texture_sol);
         forms_list[number_of_forms] = boardBase;
         number_of_forms++;
 
@@ -359,23 +371,29 @@ int main(int argc, char* args[])
         Sphere *satellite2 = NULL;
         satellite2 = new Sphere(0.5, clrSt2, Point(0, 2, 0));
         forms_list[number_of_forms] = satellite2;
-        number_of_forms++;*/
+        number_of_forms++;
 
         //Charges
         Color c1(0, 255, 0);
         Point p(-2,3,0);
+        Color c2(255, 0, 0);
+        Point p1(3,2,0);
+
+        Charge *pCharge1 = NULL;
+        pCharge1 = new Charge(3.0,Sphere(.5, c2, p1), Vector(p,p1), 1);
+        forms_list[number_of_forms] = pCharge1;
+        number_of_forms++;*/
+
+        //Charges
+        /*Color c1(0, 255, 0);
+        Point p(-2,3,0);
         Color c2(25, 25, 25);
         Point p1(3,2,0);
         Point p3(5,5,3);
-        Color c3(0, 255, 200);
+        Color c3(0, 255, 200);*/
 
-        std::vector<Charge*> vecCharge{};
+        //std::vector<Charge*> vecCharge{};
         //Charge* tabCharges[2];
-
-
-
-
-
 
         /*Charge *pCharge1 = NULL;
         pCharge1 = new Charge(3.0,Sphere(.5, c2, p1), Vector(), 1, Vector());
@@ -398,9 +416,14 @@ int main(int argc, char* args[])
         //contener->ajoutCharge(*pCharge2);
         number_of_forms++;*/
 
+        //Création et positionner les charges
         ContenerCharges *contener=NULL;
-        contener = new ContenerCharges(10);
-        for(size_t i=0; i=10;i++){
+        contener = new ContenerCharges(5);
+        //forms_list[number_of_forms]=contener->getTab().at(i);
+        //number_of_forms++;
+        //std::cout << "taille tableau : " << contener->getTab().size();
+
+        for(size_t i=0; i<5;i++){
 
             forms_list[number_of_forms]=contener->getTab().at(i);
             number_of_forms++;
