@@ -5,8 +5,12 @@
 #include <SDL2/SDL_opengl.h>
 #include <GL/GLU.h>
 #include <math.h>
+#include <vector>
 
-#include "sdlglutils.h"
+#include <ctime>    // For time()
+#include <cstdlib>  // For srand() and rand()
+
+//#include "sdlglutils.h"
 
 
 // Module for space geometry
@@ -29,18 +33,21 @@ const int SCREEN_WIDTH = 1040;
 const int SCREEN_HEIGHT = 700;
 
 // Max number of forms : static allocation
-const int MAX_FORMS_NUMBER = 20;
+const int MAX_FORMS_NUMBER = 30;
 
 // Animation actualization delay (in ms) => 100 updates per second
 const Uint32 ANIM_DELAY = 10;
 
 //Variables de définition du plateau
-const double hauteurContourPlateau = 4;
-const double longueurFaceExt = 100.;
-const double largeurFaceExt = 50.;
-const double epaisseurFace = 0.5;
+const double hauteurContourPlateau = 2;
+const double longueurFaceExt = 20.;
+const double largeurFaceExt = 10.;
+const double profondeurFace = 0.5;
 const Color clBoard(0,0,255);
 const Color clBoardBase(255,0,0);
+//const GLuint texture_sol = loadTexture("ma_texture.jpg");
+
+
 
 // Starts up SDL, creates window, and initializes OpenGL
 bool init(SDL_Window** window, SDL_GLContext* context);
@@ -257,14 +264,7 @@ int main(int argc, char* args[])
 
         // Camera position
         Point camera_position(1, 5, -10);
-        double theta=1.61087, phi=1.5061, rho=1.;
-        if(longueurFaceExt > largeurFaceExt){
-            rho = rho + longueurFaceExt/2;
-        }
-        else{
-            rho = rho + largeurFaceExt/2;
-        }
-
+        double theta=1.61087, phi=1.5061, rho=11.0;
         // Rotation camera
         Point camera_rotation(0, 0, 0);
         // hauteur camera
@@ -278,73 +278,69 @@ int main(int argc, char* args[])
             forms_list[i] = NULL;
         }
         // Create here specific forms and add them to the list...
-        // Don't forget to update the actual number_of_forms
-
-        //TEXTURES
-        GLuint texture_sol = loadTexture("./textures/02.jpg");
-        GLuint texture_mur = loadTexture("./textures/vecteur7.jpg");
+        // Don't forget to update the actual number_of_forms !
 
 
         //FACE 1 EXTERIEUR PLATEAU
         Parallepipede_face *firstCloseExtBoard = NULL;
-        firstCloseExtBoard = new Parallepipede_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, 0), longueurFaceExt, hauteurContourPlateau, epaisseurFace, texture_mur);
+        firstCloseExtBoard = new Parallepipede_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, 0), longueurFaceExt, hauteurContourPlateau, profondeurFace, clBoard);
         forms_list[number_of_forms] = firstCloseExtBoard;
         number_of_forms++;
         //FACE 2 EXTERIEUR PLATEAU
         Parallepipede_face *secondCloseExtBoard = NULL;
-        secondCloseExtBoard = new Parallepipede_face(Vector(0,0,1), Vector(0,1,0), Point(0, 0, 0), largeurFaceExt, hauteurContourPlateau, epaisseurFace, texture_mur);
+        secondCloseExtBoard = new Parallepipede_face(Vector(0,0,1), Vector(0,1,0), Point(0, 0, 0), largeurFaceExt, hauteurContourPlateau, profondeurFace, clBoard);
         forms_list[number_of_forms] = secondCloseExtBoard;
         number_of_forms++;
         //FACE 3 EXTERIEUR PLATEAU
         Parallepipede_face *thirdCloseExtBoard = NULL;
-        thirdCloseExtBoard = new Parallepipede_face(Vector(0,0,1), Vector(0,1,0), Point(longueurFaceExt, 0, 0), largeurFaceExt, hauteurContourPlateau, epaisseurFace, texture_mur);
+        thirdCloseExtBoard = new Parallepipede_face(Vector(0,0,1), Vector(0,1,0), Point(longueurFaceExt, 0, 0), largeurFaceExt, hauteurContourPlateau, profondeurFace, clBoard);
         forms_list[number_of_forms] = thirdCloseExtBoard;
         number_of_forms++;
         //FACE 4 EXTERIEUR PLATEAU
         Parallepipede_face *fourthCloseExtBoard = NULL;
-        fourthCloseExtBoard = new Parallepipede_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, largeurFaceExt), longueurFaceExt, hauteurContourPlateau, epaisseurFace, texture_mur);
+        fourthCloseExtBoard = new Parallepipede_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, largeurFaceExt), longueurFaceExt, hauteurContourPlateau, profondeurFace, clBoard);
         forms_list[number_of_forms] = fourthCloseExtBoard;
         number_of_forms++;
 
         //profondeur
         Parallepipede_face *depthF1 = NULL;
-        depthF1 = new Parallepipede_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, epaisseurFace), longueurFaceExt, hauteurContourPlateau, epaisseurFace, texture_mur);
+        depthF1 = new Parallepipede_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, profondeurFace), longueurFaceExt, hauteurContourPlateau, profondeurFace, clBoard);
         forms_list[number_of_forms] = depthF1;
         number_of_forms++;
         Parallepipede_face *depthF2 = NULL;
-        depthF2 = new Parallepipede_face(Vector(0,0,1), Vector(0,1,0), Point(epaisseurFace, 0, 0), largeurFaceExt, hauteurContourPlateau, epaisseurFace, texture_mur);
+        depthF2 = new Parallepipede_face(Vector(0,0,1), Vector(0,1,0), Point(profondeurFace, 0, 0), largeurFaceExt, hauteurContourPlateau, profondeurFace, clBoard);
         forms_list[number_of_forms] = depthF2;
         number_of_forms++;
         Parallepipede_face *depthF3 = NULL;
-        depthF3 = new Parallepipede_face(Vector(0,0,1), Vector(0,1,0), Point(longueurFaceExt-epaisseurFace, 0, 0), largeurFaceExt, hauteurContourPlateau, epaisseurFace, texture_mur);
+        depthF3 = new Parallepipede_face(Vector(0,0,1), Vector(0,1,0), Point(longueurFaceExt-profondeurFace, 0, 0), largeurFaceExt, hauteurContourPlateau, profondeurFace, clBoard);
         forms_list[number_of_forms] = depthF3;
         number_of_forms++;
         Parallepipede_face *depthF4 = NULL;
-        depthF4 = new Parallepipede_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, largeurFaceExt-epaisseurFace), longueurFaceExt, hauteurContourPlateau, epaisseurFace, texture_mur);
+        depthF4 = new Parallepipede_face(Vector(1,0,0), Vector(0,1,0), Point(0, 0, largeurFaceExt-profondeurFace), longueurFaceExt, hauteurContourPlateau, profondeurFace, clBoard);
         forms_list[number_of_forms] = depthF4;
         number_of_forms++;
 
         //DESSUS DES MURS DE LA PROFONDEUR
         Parallepipede_face *roofF1 = NULL;
-        roofF1 = new Parallepipede_face(Vector(1,0,0), Vector(0,0,1), Point(0, hauteurContourPlateau, 0), longueurFaceExt, epaisseurFace, epaisseurFace, texture_mur);
+        roofF1 = new Parallepipede_face(Vector(1,0,0), Vector(0,0,1), Point(0, hauteurContourPlateau, 0), longueurFaceExt, profondeurFace, profondeurFace, clBoard);
         forms_list[number_of_forms] = roofF1;
         number_of_forms++;
         Parallepipede_face *roofF2 = NULL;
-        roofF2 = new Parallepipede_face(Vector(0,0,1), Vector(1,0,0), Point(0, hauteurContourPlateau, 0), largeurFaceExt, epaisseurFace, epaisseurFace, texture_mur);
+        roofF2 = new Parallepipede_face(Vector(0,0,1), Vector(1,0,0), Point(0, hauteurContourPlateau, 0), largeurFaceExt, profondeurFace, profondeurFace, clBoard);
         forms_list[number_of_forms] = roofF2;
         number_of_forms++;
         Parallepipede_face *roofF3 = NULL;
-        roofF3 = new Parallepipede_face(Vector(0,0,1), Vector(1,0,0), Point(longueurFaceExt-epaisseurFace, hauteurContourPlateau, 0), largeurFaceExt, epaisseurFace, epaisseurFace, texture_mur);
+        roofF3 = new Parallepipede_face(Vector(0,0,1), Vector(1,0,0), Point(longueurFaceExt-profondeurFace, hauteurContourPlateau, 0), largeurFaceExt, profondeurFace, profondeurFace, clBoard);
         forms_list[number_of_forms] = roofF3;
         number_of_forms++;
         Parallepipede_face *roofF4 = NULL;
-        roofF4 = new Parallepipede_face(Vector(1,0,0), Vector(0,0,1), Point(0, hauteurContourPlateau, largeurFaceExt-epaisseurFace), longueurFaceExt, epaisseurFace, epaisseurFace, texture_mur);
+        roofF4 = new Parallepipede_face(Vector(1,0,0), Vector(0,0,1), Point(0, hauteurContourPlateau, largeurFaceExt-profondeurFace), longueurFaceExt, profondeurFace, profondeurFace, clBoard);
         forms_list[number_of_forms] = roofF4;
         number_of_forms++;
 
         //PLATEAU
         Parallepipede_face *boardBase = NULL;
-        boardBase = new Parallepipede_face(Vector(1,0,0), Vector(0,0,1), Point(0, 0, 0), longueurFaceExt, largeurFaceExt, epaisseurFace, texture_sol);
+        boardBase = new Parallepipede_face(Vector(1,0,0), Vector(0,0,1), Point(0, 0, 0), longueurFaceExt, largeurFaceExt, profondeurFace, clBoardBase);
         forms_list[number_of_forms] = boardBase;
         number_of_forms++;
 
@@ -363,18 +359,54 @@ int main(int argc, char* args[])
         Sphere *satellite2 = NULL;
         satellite2 = new Sphere(0.5, clrSt2, Point(0, 2, 0));
         forms_list[number_of_forms] = satellite2;
-        number_of_forms++;
+        number_of_forms++;*/
 
         //Charges
         Color c1(0, 255, 0);
         Point p(-2,3,0);
-        Color c2(255, 0, 0);
+        Color c2(25, 25, 25);
         Point p1(3,2,0);
+        Point p3(5,5,3);
+        Color c3(0, 255, 200);
 
-        Charge *pCharge1 = NULL;
-        pCharge1 = new Charge(3.0,Sphere(.5, c2, p1), Vector(p,p1), 1);
+        std::vector<Charge*> vecCharge{};
+        //Charge* tabCharges[2];
+
+
+
+
+
+
+        /*Charge *pCharge1 = NULL;
+        pCharge1 = new Charge(3.0,Sphere(.5, c2, p1), Vector(), 1, Vector());
         forms_list[number_of_forms] = pCharge1;
+        number_of_forms++;
+        //vecCharge.push_back(pCharge1);
+        //contener->ajoutCharge(vecCharge.at(0));
+        //contener->ajoutCharge(pCharge1);
+
+
+        Charge *pCharge2 = NULL;
+        pCharge2 = new Charge(6.0,Sphere(.5, c3, p3), Vector(), 1, Vector());
+        forms_list[number_of_forms] = pCharge2;
+        //contener->ajoutCharge(*pCharge2);
+        number_of_forms++;
+
+        Sphere *pSphere = NULL;
+        pSphere = new Sphere(2);
+        forms_list[number_of_forms] = pSphere;
+        //contener->ajoutCharge(*pCharge2);
         number_of_forms++;*/
+
+        ContenerCharges *contener=NULL;
+        contener = new ContenerCharges(10);
+        for(size_t i=0; i=10;i++){
+
+            forms_list[number_of_forms]=contener->getTab().at(i);
+            number_of_forms++;
+        }
+
+
 
         // Get first "current time"
         previous_time = SDL_GetTicks();
@@ -447,10 +479,10 @@ int main(int argc, char* args[])
             }
 
             //modif positoin du disque
-            /*thetaSpheres+=0.05;
+            //thetaSpheres+=0.05;
             //std::cout << "theta : " << theta;
-            satellite1->setPos(Point(2, cos(thetaSpheres), sin(thetaSpheres))) ;
-            satellite2->setPos(Point(cos(thetaSpheres), 2, sin(thetaSpheres))) */
+            //satellite1->setPos(Point(2, cos(thetaSpheres), sin(thetaSpheres))) ;
+            //satellite2->setPos(Point(cos(thetaSpheres), 2, sin(thetaSpheres))) ;
 
             //Update Camera
             //x = rho*sin(phi)*cos(theta)   y=rho*sin(phi)*sin(theta)   z=rho*cos(theta)
@@ -463,6 +495,7 @@ int main(int argc, char* args[])
 
             // Update window screen
             SDL_GL_SwapWindow(gWindow);
+            //
         }
     }
 

@@ -2,9 +2,34 @@
 #include <SDL2/SDL_opengl.h>
 #include <GL/GLU.h>
 #include "forms.h"
+#include <ctime>    // For time()
+#include <cstdlib>  // For srand() and rand()
+ #include <stdint.h>
 
+
+#define PI 3.14159265
 
 using namespace std;
+
+// Screen dimension constants
+const int SCREEN_WIDTH = 1040;
+const int SCREEN_HEIGHT = 700;
+
+// Max number of forms : static allocation
+const int MAX_FORMS_NUMBER = 20;
+
+// Animation actualization delay (in ms) => 100 updates per second
+const int ANIM_DELAY = 10;
+
+//Variables de définition du plateau
+const double hauteurContourPlateau = 2;
+const double longueurFaceExt = 20.;
+const double largeurFaceExt = 10.;
+const double profondeurFace = 0.5;
+const Color clBoard(0,0,255);
+const Color clBoardBase(255,0,0);
+
+
 
 
 void Form::update(double delta_t)
@@ -22,6 +47,23 @@ void Form::render()
     glColor3f(col.r, col.g, col.b);
 }
 
+float random(){
+return (float)(double(rand()) / (double(RAND_MAX) + 1.0));
+}
+
+Sphere::Sphere(int a){
+    //Crée une sphère de manière aléatoire
+    //Init random generator
+    srand(time(NULL));
+    radius = .5;
+    Color temp(random(),random(),random());
+    col = temp;
+    pos.x = rand()%10+3;
+    pos.y=rand()%5+3;
+    pos.z = rand()%5+2;
+    //TODO LES LIMITATIONS
+}
+
 
 Sphere::Sphere(double r, Color cl, Point org)
 {
@@ -29,6 +71,7 @@ Sphere::Sphere(double r, Color cl, Point org)
     col = cl;
     pos = org;
 }
+
 
 void Sphere::setPos(Point pos){
     this->pos = pos;
@@ -61,6 +104,11 @@ void Sphere::render()
 
     gluDeleteQuadric(quad);
 }
+
+Point Sphere::getSpherePos(){
+    return this->pos;
+}
+
 
 
 Cube_face::Cube_face(Vector v1, Vector v2, Point org, double l, double w, Color cl)
@@ -108,7 +156,7 @@ void Cube_face::render()
 }
 
 
-Parallepipede_face::Parallepipede_face(Vector v1, Vector v2, Point org, double l, double h, double d, GLuint mtexture)
+Parallepipede_face::Parallepipede_face(Vector v1, Vector v2, Point org, double l, double h, double d, Color cl)
 {
     vdir1 = 1.0 / v1.norm() * v1;
     vdir2 = 1.0 / v2.norm() * v2;
@@ -116,7 +164,7 @@ Parallepipede_face::Parallepipede_face(Vector v1, Vector v2, Point org, double l
     length = l;
     height = h;
     depth = d;
-    this->texture = mtexture;
+    col = cl;
 }
 
 
@@ -138,37 +186,34 @@ void Parallepipede_face::render()
 
     // dimension
     //glScaled(0.5,0.5,0.5);
-    glBindTexture(GL_TEXTURE_2D, texture);
-
 
     Form::render();
     glBegin(GL_QUADS);
     {
         //extérieur
         //glColor3f(1,1,0);
-        glTexCoord2d(0,1);
-
+        glColor3f(col.r, col.g, col.b);
         glVertex3d(p1.x, p1.y, p1.z);
         //glColor3f(0,1,1);
-        glTexCoord2d(0,0);
+        glColor3f(col.r, col.g, col.b);
         glVertex3d(p2.x, p2.y, p2.z);
         //glColor3f(1,0,1);
-        glTexCoord2d(1,0);
+        glColor3f(col.r, col.g, col.b);
         glVertex3d(p3.x, p3.y, p3.z);
         //glColor3f(0,1,0);
-        glTexCoord2d(1,1);
+        glColor3f(col.r, col.g, col.b);
         glVertex3d(p4.x, p4.y, p4.z);
     }
     glEnd();
 }
 
-Charge::Charge(double _charge, Sphere _sphere, Vector _force, int _bloquage)
+Charge::Charge(double _charge, Sphere _sphere, Vector _force, int _bloquage, Vector _directeur)
 {
     chargeValue = _charge;
     sphere = _sphere;
     force = _force;
     bloquage = _bloquage;
-   // chargeFictive = _chargeFictive;
+    vectPorteur = _directeur;
 }
 
 //Render de la charge
@@ -179,5 +224,52 @@ void Charge::render()
 
 void Charge::update(double delta_t)
 {
-    // Nothing to do here, animation update is done in child class method
+    //Calculs des charges fictives
+    //std::cout<<tabCharges[0] -> getChargePos();
+    //std::cout<<this-> tab->chargeValue<<"\n";
+}
+
+//Recupère une position de charge fictive et calcul le vecteur qui passe par la charge courante et la charge fictive.
+void Charge::vectDirecteur(Point chargeFictive){
+    this->vectPorteur = Vector(getChargePos(), chargeFictive);
+}
+
+void Charge::calculCoulomb(Charge fictive){
+    double chargeFictiveValue = fictive.chargeValue;
+    vectDirecteur(fictive.sphere.getSpherePos());
+    this -> force = ((8.99*pow(10,9))*(this -> chargeValue * fictive.chargeValue)/pow(vectPorteur.norm(),3))*(this -> vectPorteur);
+}
+
+Point Charge::getChargePos(){
+    return this->sphere.getSpherePos();
+}
+
+
+ContenerCharges::ContenerCharges(int numberOfCharge){
+    this->numberOfCharge = numberOfCharge;
+}
+
+void ContenerCharges::render(){
+    for(size_t i=0;i<this->numberOfCharge;i++){
+        //Charge(double charge = 0.0, Sphere _sphere = Sphere(), Vector _force = Vector(),
+        //     int _bloquage = 1, Vector vectPorteur=Vector());
+        Charge *temp = new Charge(rand()%2*pow(-1,rand()), Sphere(1), Vector(), rand()%2, Vector());
+        tab.push_back(temp);
+    }
+}
+
+void ContenerCharges::update(double delta_t)
+{
+}
+
+void calculChargeFictive(std::vector<Charge*> vecCharge){
+    //Todo
+}
+
+void ContenerCharges::ajoutCharge(Charge* charge){
+    tab.push_back(charge);
+}
+
+std::vector<Charge*> ContenerCharges::getTab(){
+    return this->tab;
 }

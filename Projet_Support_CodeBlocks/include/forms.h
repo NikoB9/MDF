@@ -1,9 +1,10 @@
+
 #ifndef FORMS_H_INCLUDED
 #define FORMS_H_INCLUDED
 
 #include "geometry.h"
 #include "animation.h"
-#include "sdlglutils.h"
+#include <vector>
 
 
 class Color
@@ -50,11 +51,14 @@ private:
     Point pos;
 public:
     Sphere(double r = 1.0, Color cl = Color(), Point org = Point());
+    Sphere(int a);
     const double getRadius() {return radius;}
     void setRadius(double r) {radius = r;}
     void update(double delta_t);
     void render();
     void setPos(Point pos);
+    Point getSpherePos();
+
 };
 
 
@@ -78,15 +82,13 @@ class Parallepipede_face : public Form
 private :
     Vector vdir1, vdir2;
     double length, height, depth;
-    GLuint texture;
 public:
     Parallepipede_face(Vector v1 = Vector(1,0,0), Vector v2 = Vector(0,0,1),
           Point org = Point(), double length = 1.0, double height = 1.0, double depth = 0.0,
-          GLuint texture = loadTexture("./textures/02.jpg"));
+          Color cl = Color());
     void update(double delta_t);
     void render();
 };
-
 
 // Charges
 class Charge: public Form
@@ -96,29 +98,41 @@ protected:
     double chargeValue;
     //sph�re de repr�sentation
     Sphere sphere;
-    //force subi par la charge
+    //force subi par la charge en double les vecteurs unitaires seront calculés à la main
     Vector force;
-    //Si 1 la charge est fig�e dans l'espace, sinon elle bouge
+    //Si 1 la charge est fige dans l'espace, sinon elle bouge
     bool bloquage;
     //Charge fictive de l'ensemble des autres charges r�unie en une charge.
     //Charge chargeFictive;
+    Vector vectPorteur;
+
+
 public:
     //constructor
-    Charge(double charge = 0.0, Sphere _sphere = Sphere(),Vector _force = Vector(0,0,0),
-             int _bloquage = 1);
+    Charge(double charge = 0.0, Sphere _sphere = Sphere(), Vector _force = Vector(),
+             int _bloquage = 1, Vector vectPorteur=Vector());
     void render();
     void update(double delta_t);
-
-    //getter chargeValue
-    //double getCharge(){return charge;}
-    //setter chargeValue
-   // void setCharge(double _charge){chargeValue=_charge;}
-    //getter force
-    //Vector getForce(){return force;}
-    //setter force
-    //setter charge fictive
-    //setter charge force
+    void vectDirecteur(Point chargeFictive);
+    void calculCoulomb(Charge fictive);
+    Point getChargePos();
+    void calculChargeFictive(std::vector<Charge*> vecCharge);
+    /*std::vector<Charge*> vecCharge;
+    void actualiseVec(std::vector<Charge*> vecCharge);*/
 };
+
+class ContenerCharges: public Form{
+private:
+    std::vector<Charge*> tab;
+    int numberOfCharge;
+public:
+    ContenerCharges(int numberOfCharge=0);
+    void render();
+    void update(double delta_t);
+    void ajoutCharge(Charge* charge);
+    std::vector<Charge*> getTab();
+};
+
 
 
 #endif // FORMS_H_INCLUDED
