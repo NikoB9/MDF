@@ -118,6 +118,7 @@ public:
     void vectDirecteur(Point chargeFictive);
     void calculCoulomb(Charge fictive);
     Point getChargePos();
+    void setPos(Point p){this->sphere.setPos(p);}
     void calculChargeFictive(std::vector<Charge*> vecCharge);
     /*std::vector<Charge*> vecCharge;
     void actualiseVec(std::vector<Charge*> vecCharge);*/
@@ -133,6 +134,7 @@ public:
     void update(double delta_t);
     void ajoutCharge(Charge* charge);
     std::vector<Charge*> getTab();
+
 };
 
 

@@ -6,6 +6,7 @@
 #include <cstdlib>  // For srand() and rand()
 #include <stdint.h>
 #include "globals.cpp"
+#include <math.h>
 
 //TEST
 #define PI 3.14159265
@@ -50,7 +51,19 @@ Sphere::Sphere(int a){
     //Init random generator
     radius = .5;
     //Color temp(random(),random(),random());
-    col = (a>=0 ? RED : BLUE);
+    float ratio = (abs(a)/15.0f);
+
+    if(a>=0){
+        //charge positive
+        //color setter
+        Color tempPos(ratio,ratio,1.0f);
+        col=tempPos;
+    }
+    else{
+        Color tempNeg(1.0f,ratio,ratio);
+        col=tempNeg;
+    }
+
     //rand()%(borne _maximale - borne_minimale) + borne_minimale;
     pos.x = rand()%(int(longueurFaceExt)-2)+2;
     //std::cout << "longueur = " << longueurFaceExt << "\n10 = " << longueurFaceExt/3 <<std::endl;
@@ -70,6 +83,7 @@ Sphere::Sphere(double r, Color cl, Point org)
 
 void Sphere::setPos(Point pos){
     this->pos = pos;
+    //std::cout<<pos.x<<"\n";
 }
 
 
@@ -246,13 +260,28 @@ Point Charge::getChargePos(){
 
 
 ContenerCharges::ContenerCharges(int numberOfCharge){
-    this->numberOfCharge = numberOfCharge;
+    for(size_t i=0; i<numberOfCharge/4; i++){
+        //couloir droit
+        double chargeValue = rand()%20-10;
+        int intChargeValue = (int)chargeValue;
+        tab.push_back(new Charge(chargeValue, Sphere(intChargeValue), Vector(), rand()%2, Vector()));
+        Point A((double)(longueurFaceExt/numberOfCharge)*(i*4), 0.5,largeurFaceExt/3);
+        tab.at(tab.size()-1)->setPos(A);
 
+        //couloir gauche
+        double chargeValue1 = rand()%20-10;
+        int intChargeValue1 = (int)chargeValue1;
+        tab.push_back(new Charge(chargeValue1, Sphere(intChargeValue), Vector(), rand()%2, Vector()));
+        Point A1((double)(longueurFaceExt/numberOfCharge)*(i*4), 0.5,(largeurFaceExt/3)*2.0);
+        tab.at(tab.size()-1)->setPos(A1);
+    }
+
+    /*this->numberOfCharge = numberOfCharge;
     for(size_t i=0;i<this->numberOfCharge;i++){
         double chargeValue = rand()%20-10;
         int intChargeValue = (int)chargeValue;
         tab.push_back(new Charge(chargeValue, Sphere(intChargeValue), Vector(), rand()%2, Vector()));
-    }
+    }*/
 }
 
 void ContenerCharges::render(){

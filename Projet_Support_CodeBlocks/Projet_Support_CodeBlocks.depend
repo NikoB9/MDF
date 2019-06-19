@@ -413,7 +413,7 @@
 1560874994 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop2\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\geometry.h
 	<iostream>
 
-1560953830 source:c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop2\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\src\forms.cpp
+1560958858 source:c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop2\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\src\forms.cpp
 	<cmath>
 	<SDL2/SDL_opengl.h>
 	<GL/GLU.h>
@@ -422,6 +422,7 @@
 	<cstdlib>
 	<stdint.h>
 	"globals.cpp"
+	<math.h>
 
 1560874994 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop2\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\sdl2\sdl_opengl.h
 	"SDL_config.h"
@@ -453,7 +454,7 @@
 	<stdint.h>
 	<inttypes.h>
 
-1560952837 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop2\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\forms.h
+1560958418 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop2\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\forms.h
 	"geometry.h"
 	"animation.h"
 	<vector>
@@ -768,7 +769,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1560952837 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop2\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\src\globals.cpp
+1560957812 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop2\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\src\globals.cpp
 
 1560874994 source:c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop2\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\src\geometry.cpp
 	<cmath>
@@ -788,7 +789,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1560953949 source:c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop2\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\src\first_prog.cpp
+1560957487 source:c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop2\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\src\first_prog.cpp
 	<iostream>
 	<cmath>
 	<SDL2/SDL.h>
@@ -807,5 +808,5 @@
 1560874994 c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop2\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\projet.h
 	"forms.h"
 
-1560952837 source:c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop2\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\src\globals.cpp
+1560957812 source:c:\users\laroz\documents\polytech' paris-sud\app3\projetcoop2\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\src\globals.cpp
 

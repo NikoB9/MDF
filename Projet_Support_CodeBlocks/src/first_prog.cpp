@@ -23,7 +23,7 @@
 #include "projet.h"
 
 #define PI 3.14159265
-#define NOMBRE_CHARGE 1000
+#define NOMBRE_CHARGE 100
 
 using namespace std;
 
