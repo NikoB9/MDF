@@ -7,6 +7,7 @@
 #include <math.h>
 #include <vector>
 #include "sdlglutils.h"
+#include "globals.cpp"
 
 #include <ctime>    // For time()
 #include <cstdlib>  // For srand() and rand()
@@ -22,7 +23,7 @@
 #include "projet.h"
 
 #define PI 3.14159265
-#define NOMBRE_CHARGE 50
+#define NOMBRE_CHARGE 1000
 
 using namespace std;
 
@@ -40,14 +41,6 @@ const int MAX_FORMS_NUMBER = 40+NOMBRE_CHARGE;
 // Animation actualization delay (in ms) => 100 updates per second
 const Uint32 ANIM_DELAY = 10;
 
-//Variables de d�finition du plateau
-const double hauteurContourPlateau = 2;
-const double longueurFaceExt = 30.;
-const double largeurFaceExt = 15.;
-const double epaisseurFace = 0.5;
-//const Color clBoard(0,0,255);
-//const Color clBoardBase(255,0,0);
-//const GLuint texture_sol = loadTexture("ma_texture.jpg");
 
 
 

@@ -7,7 +7,7 @@
 #include <stdint.h>
 #include "globals.cpp"
 
-
+//TEST
 #define PI 3.14159265
 
 using namespace std;
@@ -49,10 +49,10 @@ Sphere::Sphere(int a){
     //Crée une sphère de manière aléatoire
     //Init random generator
     radius = .5;
-    Color temp(random(),random(),random());
-    col = temp;
+    //Color temp(random(),random(),random());
+    col = (a>=0 ? RED : BLUE);
     //rand()%(borne _maximale - borne_minimale) + borne_minimale;
-    pos.x = rand()%(int(longueurFaceExt-2)-2)+2;
+    pos.x = rand()%(int(longueurFaceExt)-2)+2;
     //std::cout << "longueur = " << longueurFaceExt << "\n10 = " << longueurFaceExt/3 <<std::endl;
     pos.y=0.5;
     pos.z = rand()%(int(largeurFaceExt)-2)+2;
@@ -249,7 +249,9 @@ ContenerCharges::ContenerCharges(int numberOfCharge){
     this->numberOfCharge = numberOfCharge;
 
     for(size_t i=0;i<this->numberOfCharge;i++){
-        tab.push_back(new Charge(rand()%2*pow(-1,rand()), Sphere(0), Vector(), rand()%2, Vector()));
+        double chargeValue = rand()%20-10;
+        int intChargeValue = (int)chargeValue;
+        tab.push_back(new Charge(chargeValue, Sphere(intChargeValue), Vector(), rand()%2, Vector()));
     }
 }
 
