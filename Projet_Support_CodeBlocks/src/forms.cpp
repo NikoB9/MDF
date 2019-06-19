@@ -276,6 +276,7 @@ ContenerCharges::ContenerCharges(int numberOfCharge){
         tab.at(tab.size()-1)->setPos(A1);
     }
 
+
     /*this->numberOfCharge = numberOfCharge;
     for(size_t i=0;i<this->numberOfCharge;i++){
         double chargeValue = rand()%20-10;
