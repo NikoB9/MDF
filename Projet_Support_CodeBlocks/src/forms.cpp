@@ -4,7 +4,8 @@
 #include "forms.h"
 #include <ctime>    // For time()
 #include <cstdlib>  // For srand() and rand()
- #include <stdint.h>
+#include <stdint.h>
+#include "globals.cpp"
 
 
 #define PI 3.14159265
@@ -21,13 +22,6 @@ const int MAX_FORMS_NUMBER = 20;
 // Animation actualization delay (in ms) => 100 updates per second
 const int ANIM_DELAY = 10;
 
-//Variables de définition du plateau
-const double hauteurContourPlateau = 2;
-const double longueurFaceExt = 20.;
-const double largeurFaceExt = 10.;
-const double profondeurFace = 0.5;
-const Color clBoard(0,0,255);
-const Color clBoardBase(255,0,0);
 
 
 
@@ -58,9 +52,10 @@ Sphere::Sphere(int a){
     Color temp(random(),random(),random());
     col = temp;
     //rand()%(borne _maximale - borne_minimale) + borne_minimale;
-    pos.x = rand()%(int(longueurFaceExt)-1)+1;
+    pos.x = rand()%(int(longueurFaceExt-2)-2)+2;
+    //std::cout << "longueur = " << longueurFaceExt << "\n10 = " << longueurFaceExt/3 <<std::endl;
     pos.y=0.5;
-    pos.z = rand()%(int(largeurFaceExt)-1)+1;
+    pos.z = rand()%(int(largeurFaceExt)-2)+2;
     //TODO LES LIMITATIONS
 }
 
@@ -180,6 +175,7 @@ void Parallepipede_face::render()
     Point p1 = Point();
     Point p2 = p1, p3, p4 = p1;
     p2.translate(length*vdir1);
+    //std::cout<< "longueur : " << p2.x << "largeur : " << p2.z;
     p3 = p2;
     p3.translate(height*vdir2);
     p4.translate(height*vdir2);

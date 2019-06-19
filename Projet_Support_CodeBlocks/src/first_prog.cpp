@@ -7,6 +7,7 @@
 #include <math.h>
 #include <vector>
 #include "sdlglutils.h"
+#include "globals.cpp"
 
 #include <ctime>    // For time()
 #include <cstdlib>  // For srand() and rand()
@@ -34,19 +35,12 @@ const int SCREEN_WIDTH = 1040;
 const int SCREEN_HEIGHT = 700;
 
 // Max number of forms : static allocation
-const int MAX_FORMS_NUMBER = 40;
+const int MAX_FORMS_NUMBER = 540;
 
 // Animation actualization delay (in ms) => 100 updates per second
 const Uint32 ANIM_DELAY = 10;
 
-//Variables de définition du plateau
-const double hauteurContourPlateau = 2;
-const double longueurFaceExt = 30.;
-const double largeurFaceExt = 15.;
-const double epaisseurFace = 0.5;
-//const Color clBoard(0,0,255);
-//const Color clBoardBase(255,0,0);
-//const GLuint texture_sol = loadTexture("ma_texture.jpg");
+
 
 
 
@@ -421,7 +415,7 @@ int main(int argc, char* args[])
 
         //Création et positionner les charges
         ContenerCharges *contener=NULL;
-        contener = new ContenerCharges(15);
+        contener = new ContenerCharges(50);
 
         for(size_t i=0; i<contener->getTab().size();i++){
 

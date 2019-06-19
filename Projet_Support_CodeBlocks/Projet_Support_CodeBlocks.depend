@@ -8,7 +8,7 @@
 1466429544 c:\users\echowin\desktop\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\geometry.h
 	<iostream>
 
-1560877212 source:c:\users\echowin\desktop\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\src\first_prog.cpp
+1560951676 source:c:\users\echowin\desktop\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\src\first_prog.cpp
 	<iostream>
 	<cmath>
 	<SDL2/SDL.h>
@@ -17,6 +17,7 @@
 	<math.h>
 	<vector>
 	"sdlglutils.h"
+	"globals.cpp"
 	<ctime>
 	<cstdlib>
 	"geometry.h"
@@ -389,7 +390,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1560876929 source:c:\users\echowin\desktop\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\src\forms.cpp
+1560951585 source:c:\users\echowin\desktop\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\src\forms.cpp
 	<cmath>
 	<SDL2/SDL_opengl.h>
 	<GL/GLU.h>
@@ -397,4 +398,9 @@
 	<ctime>
 	<cstdlib>
 	<stdint.h>
+	"globals.cpp"
+
+1560951716 c:\users\echowin\desktop\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\src\globals.cpp
+
+1560951716 source:c:\users\echowin\desktop\projetcoop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\src\globals.cpp
 
