@@ -416,11 +416,8 @@ int main(int argc, char* args[])
         //Cr�ation et positionner les charges
         ContenerCharges *contener=NULL;
         contener = new ContenerCharges(NOMBRE_CHARGE);
-
-        for(size_t i=0; i<contener->getTab().size();i++){
-            forms_list[number_of_forms]=contener->getTab().at(i);
-            number_of_forms++;
-        }
+        forms_list[number_of_forms]=contener;
+        number_of_forms++;
 
         /*Charge *pChargeTombe = NULL;
         pChargeTombe = new Charge();
@@ -458,23 +455,23 @@ int main(int argc, char* args[])
 
                     //Modif Position camera
                      case SDLK_UP:
-                        phi-=1* PI / 180.0;
+                        phi-=1.5* PI / 180.0;
                         std::cout<<"rho : "<<rho<<"  theta : "<<theta<<"   phi  : "<<phi<<" \n";
                         std::cout<<"x : "<<camera_position.x<<"  y:"<<camera_position.y<<"  z:"<<camera_position.z<<"\n";
                         break;
                     case SDLK_DOWN:
-                        phi+=1* PI / 180.0;
+                        phi+=1.5* PI / 180.0;
                         std::cout<<"rho : "<<rho<<"  theta : "<<theta<<"   phi  : "<<phi<<" \n";
                         std::cout<<"x : "<<camera_position.x<<"  y:"<<camera_position.y<<"  z:"<<camera_position.z<<"\n";
                         break;
 
                     case SDLK_RIGHT:
-                        theta-=1* PI / 180.0;
+                        theta-=1.5* PI / 180.0;
                         std::cout<<"rho : "<<rho<<"  theta : "<<theta<<"   phi  : "<<phi<<" \n";
                         std::cout<<"x : "<<camera_position.x<<"  y:"<<camera_position.y<<"  z:"<<camera_position.z<<"\n";
                         break;
                      case SDLK_LEFT:
-                        theta+=1* PI / 180.0;
+                        theta+=1.5* PI / 180.0;
                         std::cout<<"rho : "<<rho<<"  theta : "<<theta<<"   phi  : "<<phi<<" \n";
                         std::cout<<"x : "<<camera_position.x<<"  y:"<<camera_position.y<<"  z:"<<camera_position.z<<"\n";
                         break;

@@ -116,10 +116,12 @@ public:
     void render();
     void update(double delta_t);
     void vectDirecteur(Point chargeFictive);
-    void calculCoulomb(Charge fictive);
+    void calculCoulomb(Charge* fictive);
     Point getChargePos();
+    Vector getVect(){return this->force;}
+    void initVectForce(){force=Vector();}
     void setPos(Point p){this->sphere.setPos(p);}
-    void calculChargeFictive(std::vector<Charge*> vecCharge);
+    //void calculChargeFictive(std::vector<Charge*> vecCharge);
     /*std::vector<Charge*> vecCharge;
     void actualiseVec(std::vector<Charge*> vecCharge);*/
 };
@@ -128,6 +130,7 @@ class ContenerCharges: public Form{
 private:
     std::vector<Charge*> tab;
     int numberOfCharge;
+    Charge *ChargeMobile;
 public:
     ContenerCharges(int numberOfCharge=0);
     void render();

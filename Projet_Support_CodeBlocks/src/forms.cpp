@@ -241,6 +241,7 @@ void Charge::update(double delta_t)
     //Calculs des charges fictives
     //std::cout<<tabCharges[0] -> getChargePos();
     //std::cout<<this-> tab->chargeValue<<"\n";
+
 }
 
 //Recupère une position de charge fictive et calcul le vecteur qui passe par la charge courante et la charge fictive.
@@ -248,10 +249,10 @@ void Charge::vectDirecteur(Point chargeFictive){
     this->vectPorteur = Vector(getChargePos(), chargeFictive);
 }
 
-void Charge::calculCoulomb(Charge fictive){
-    double chargeFictiveValue = fictive.chargeValue;
-    vectDirecteur(fictive.sphere.getSpherePos());
-    this -> force = ((8.99*pow(10,9))*(this -> chargeValue * fictive.chargeValue)/pow(vectPorteur.norm(),3))*(this -> vectPorteur);
+void Charge::calculCoulomb(Charge *fictive){
+    double chargeFictiveValue = fictive->chargeValue;
+    vectDirecteur(fictive->sphere.getSpherePos());
+    this -> force += ((8.99*pow(10,9))*(this -> chargeValue * fictive->chargeValue)/pow(vectPorteur.norm(),3))*(this -> vectPorteur);
 }
 
 Point Charge::getChargePos(){
@@ -271,10 +272,19 @@ ContenerCharges::ContenerCharges(int numberOfCharge){
         //couloir gauche
         double chargeValue1 = rand()%20-10;
         int intChargeValue1 = (int)chargeValue1;
-        tab.push_back(new Charge(chargeValue1, Sphere(intChargeValue), Vector(), rand()%2, Vector()));
+        tab.push_back(new Charge(chargeValue1, Sphere(intChargeValue1), Vector(), rand()%2, Vector()));
         Point A1((double)(longueurFaceExt/numberOfCharge)*(i*4), 0.5,(largeurFaceExt/3)*2.0);
         tab.at(tab.size()-1)->setPos(A1);
     }
+
+    /*for(size_t i=0; i<numberOfCharge/4; i++){
+        //Triangles
+        double chargeValue = rand()%20-10;
+        int intChargeValue = (int)chargeValue;
+        tab.push_back(new Charge(chargeValue, Sphere(intChargeValue), Vector(), rand()%2, Vector()));
+        Point A((double)(longueurFaceExt/numberOfCharge)*(i*4), 0.5,largeurFaceExt/3);
+        tab.at(tab.size()-1)->setPos(A);
+    }*/
 
 
     /*this->numberOfCharge = numberOfCharge;
@@ -283,21 +293,54 @@ ContenerCharges::ContenerCharges(int numberOfCharge){
         int intChargeValue = (int)chargeValue;
         tab.push_back(new Charge(chargeValue, Sphere(intChargeValue), Vector(), rand()%2, Vector()));
     }*/
+
+    ChargeMobile = new Charge();
 }
 
 void ContenerCharges::render(){
-    for(size_t i = 0; i < tab.size(); i++){
+
+
+    glPushMatrix(); // Preserve the camera viewing point for further forms
+    // Render the coordinates system
+    glBegin(GL_LINES);
+    {
+        glColor3f(1.0f, 0.0f, 0.0f);
+        glVertex3i(0, 0, 0);
+        glVertex3i(5, 0, 0);
+        glColor3f(0.0f, 1.0f, 0.0f);
+        glVertex3i(0, 0, 0);
+        glVertex3i(0, 5, 0);
+        glColor3f(0.0f, 0.0f, 1.0f);
+        glVertex3i(0, 0, 0);
+        glVertex3i(0, 0, 5);
+    }
+    glEnd();
+    glPopMatrix(); // Restore the camera viewing point for next object
+
+    // Render the list of forms
+    unsigned short i = 0;
+    while(i != tab.size())
+    {
+        glPushMatrix(); // Preserve the camera viewing point for further forms
         tab.at(i)->render();
+        glPopMatrix(); // Restore the camera viewing point for next object
+        i++;
     }
 }
 
 void ContenerCharges::update(double delta_t)
 {
+    for(size_t i = 0; i < tab.size(); i++){
+        tab.at(i)->update(delta_t);
+    }
+    ChargeMobile->calculCoulomb(tab.at(0));
+    std::cout<<ChargeMobile->getVect().x<<" is the value\n";
+
 }
 
-void calculChargeFictive(std::vector<Charge*> vecCharge){
+/*void calculChargeFictive(std::vector<Charge*> vecCharge){
     //Todo
-}
+}*/
 
 void ContenerCharges::ajoutCharge(Charge* charge){
     tab.push_back(charge);
