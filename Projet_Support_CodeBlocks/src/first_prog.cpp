@@ -7,7 +7,6 @@
 #include <math.h>
 #include <vector>
 #include "sdlglutils.h"
-#include "globals.cpp"
 
 #include <ctime>    // For time()
 #include <cstdlib>  // For srand() and rand()
@@ -23,6 +22,7 @@
 #include "projet.h"
 
 #define PI 3.14159265
+#define NOMBRE_CHARGE 50
 
 using namespace std;
 
@@ -35,12 +35,19 @@ const int SCREEN_WIDTH = 1040;
 const int SCREEN_HEIGHT = 700;
 
 // Max number of forms : static allocation
-const int MAX_FORMS_NUMBER = 540;
+const int MAX_FORMS_NUMBER = 40+NOMBRE_CHARGE;
 
 // Animation actualization delay (in ms) => 100 updates per second
 const Uint32 ANIM_DELAY = 10;
 
-
+//Variables de dï¿½finition du plateau
+const double hauteurContourPlateau = 2;
+const double longueurFaceExt = 30.;
+const double largeurFaceExt = 15.;
+const double epaisseurFace = 0.5;
+//const Color clBoard(0,0,255);
+//const Color clBoardBase(255,0,0);
+//const GLuint texture_sol = loadTexture("ma_texture.jpg");
 
 
 
@@ -206,7 +213,7 @@ const void render(Form* formlist[MAX_FORMS_NUMBER], const Point &cam_pos, const 
     glEnd();
     glPopMatrix(); // Restore the camera viewing point for next object
 
-    //Déplacer le centre de gravité du cube : barrycentre
+    //Dï¿½placer le centre de gravitï¿½ du cube : barrycentre
     glTranslated(-longueurFaceExt/2,0,-largeurFaceExt/2);
 
     // Render the list of forms
@@ -242,7 +249,7 @@ int main(int argc, char* args[])
     // OpenGL context
     SDL_GLContext gContext;
 
-    //aléatoire active
+    //alï¿½atoire active
     srand(time(NULL));
 
 
@@ -354,7 +361,7 @@ int main(int argc, char* args[])
         number_of_forms++;
 
 
-        //Gère la rotation des sphères
+        //Gï¿½re la rotation des sphï¿½res
         /*double thetaSpheres=0.0;
         //Satellite1
         Color clrSt1(0,218,0);
@@ -413,21 +420,19 @@ int main(int argc, char* args[])
         //contener->ajoutCharge(*pCharge2);
         number_of_forms++;*/
 
-        //Création et positionner les charges
+        //Crï¿½ation et positionner les charges
         ContenerCharges *contener=NULL;
-        contener = new ContenerCharges(50);
+        contener = new ContenerCharges(NOMBRE_CHARGE);
 
         for(size_t i=0; i<contener->getTab().size();i++){
-
             forms_list[number_of_forms]=contener->getTab().at(i);
             number_of_forms++;
-
-            /*std::cout << "position sphere n° " << i << ":\n-x : " << contener->getTab().at(i)->getChargePos().x
-            << "\n-y : " << contener->getTab().at(i)->getChargePos().y
-            << "\n-z : " << contener->getTab().at(i)->getChargePos().z << std::endl;*/
         }
 
-
+        /*Charge *pChargeTombe = NULL;
+        pChargeTombe = new Charge();
+        forms_list[number_of_forms]=pChargeTombe;
+        number_of_forms++;*/
 
         // Get first "current time"
         previous_time = SDL_GetTicks();
