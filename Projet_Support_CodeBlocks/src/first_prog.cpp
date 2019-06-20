@@ -167,16 +167,7 @@ void update(Form* formlist[MAX_FORMS_NUMBER], double delta_t)
     while(formlist[i] != NULL)
     {
         formlist[i]->update(delta_t);
-
-        //if(formlist[i+1] == NULL){
-
-
-
-            //Vector G = new Vector(0,-9.8,0);
-        //}
-
         i++;
-
     }
 }
 
@@ -190,7 +181,9 @@ const void render(Form* formlist[MAX_FORMS_NUMBER], const Point &cam_pos, const 
     glLoadIdentity();
 
     // Set the camera position and parameters
+    //glTranslated(-longueurFaceExt/2,0,-largeurFaceExt/2);
     gluLookAt(cam_pos.x,cam_pos.y,cam_pos.z,   cam_dir.x,cam_dir.y,cam_dir.z,    cam_h.x,cam_h.y,cam_h.z);
+    //glTranslated(longueurFaceExt/2,0,largeurFaceExt/2);
     // Isometric view
     glRotated(-45, 0, 1, 0);
     glRotated(30, 1, 0, -1);
@@ -362,11 +355,6 @@ int main(int argc, char* args[])
         forms_list[number_of_forms] = boardBase;
         number_of_forms++;
 
-        //Pente pour faire glisser la boule
-        /*Tobogan *pente = NULL;
-        pente = new Tobogan(Vector(-1,1,0), Vector(0,0,1), Point((epaisseurFace+hauteurContourPlateau), 0, (largeurFaceExt/2)-1.5 ), largeurFaceExt, 3, texture_mur);
-        forms_list[number_of_forms] = pente;
-        number_of_forms++;*/
 
 
 
