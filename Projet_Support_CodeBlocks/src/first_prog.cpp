@@ -355,7 +355,11 @@ int main(int argc, char* args[])
         forms_list[number_of_forms] = boardBase;
         number_of_forms++;
 
-
+        //Pente pour faire glisser la boule
+        /*Tobogan *pente = NULL;
+        pente = new Tobogan(Vector(-1,1,0), Vector(0,0,1), Point((epaisseurFace+hauteurContourPlateau), 0, (largeurFaceExt/2)-1.5 ), largeurFaceExt, 3, texture_mur);
+        forms_list[number_of_forms] = pente;
+        number_of_forms++;*/
 
 
         //Cr�ation et positionner les charges
