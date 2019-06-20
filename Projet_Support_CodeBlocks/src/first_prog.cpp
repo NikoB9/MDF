@@ -23,7 +23,7 @@
 #include "projet.h"
 
 #define PI 3.14159265
-#define NOMBRE_CHARGE 20
+#define NOMBRE_CHARGE 1
 
 using namespace std;
 
@@ -362,6 +362,30 @@ int main(int argc, char* args[])
         forms_list[number_of_forms]=contener;
         number_of_forms++;
 
+        /*Charge *pCharge1, *pCharge2;
+        Color col(RED), col1(BLUE);
+        Point po(longueurFaceExt/2,0.5,largeurFaceExt/2);
+        Point po1(longueurFaceExt/2-3,0.5,largeurFaceExt/2-3);
+
+        pCharge1 = new Charge(3, Sphere(0.5, col, po), Vector(),1,Vector());
+        pCharge2 = new Charge(3, Sphere(0.5, col1, po1), Vector(), 1, Vector());
+        forms_list[number_of_forms]=pCharge1;
+        number_of_forms++;
+        forms_list[number_of_forms]=pCharge2;
+        number_of_forms++;
+
+        pCharge1->initVectForce();
+        pCharge2->initVectForce();
+
+        pCharge1->calculCoulomb(pCharge2);
+
+        std::cout<<"Vecteur : "<<pCharge1->getVect().x<<"  "<<pCharge1->getVect().y<<"  "<<pCharge1->getVect().z<<"  \n";
+        for(int z=0;z<100;z++){
+            pCharge1->initVectForce();
+            pCharge1->calculCoulomb(pCharge2);
+            std::cout<<"Vecteur : "<<pCharge1->getVect().x<<"  "<<pCharge1->getVect().y<<"  "<<pCharge1->getVect().z<<"  \n";
+            //pCharge1->setPos(pCharge1->getChargePos().x+pCharge1(->))
+        }*/
         /*Charge *pCharge = NULL;
         pCharge = new*/
 
