@@ -122,7 +122,7 @@ protected:
     //Charge fictive de l'ensemble des autres charges r�unie en une charge.
     //Charge chargeFictive;
     Vector vectPorteur;
-
+    Point positionFuture;
 
 public:
     //constructor
@@ -137,6 +137,10 @@ public:
     void initVectForce(){force=Vector();}
     void setPos(Point p){this->sphere.setPos(p);}
     void setForce(Vector F){this->force=F;}
+    bool estBloquee(){ return this->bloquage;}
+    void collision(Charge *charge);
+    void setColor(Color c){this->col = c;}
+    void setPositionFuture(Point P){positionFuture=P;}
     //void calculChargeFictive(std::vector<Charge*> vecCharge);
     /*std::vector<Charge*> vecCharge;
     void actualiseVec(std::vector<Charge*> vecCharge);*/
@@ -153,6 +157,7 @@ public:
     void render();
     void update(double delta_t);
     void ajoutCharge(Charge* charge);
+    Vector updatePosition(double delta_t, bool ret);
     std::vector<Charge*> getTab();
 
 };

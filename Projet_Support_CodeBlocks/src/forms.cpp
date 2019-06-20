@@ -51,7 +51,7 @@ Sphere::Sphere(int a){
     //Init random generator
     radius = .5;
     //Color temp(random(),random(),random());
-    float ratio = (abs(a)/15.0f);
+    float ratio = (abs(a)/50.0f);
 
     if(a>=0){
         //charge positive
@@ -274,6 +274,7 @@ Charge::Charge(double _charge, Sphere _sphere, Vector _force, int _bloquage, Vec
     force = _force;
     bloquage = _bloquage;
     vectPorteur = _directeur;
+    positionFuture = Point();
 }
 
 //Render de la charge
@@ -334,6 +335,14 @@ Point Charge::getChargePos(){
     return this->sphere.getSpherePos();
 }
 
+void Charge::collision(Charge *charge){
+    double distance = Vector(this->getChargePos(), charge->getChargePos()).norm();
+    double distanceFuture = Vector(this->positionFuture, charge->getChargePos()).norm();
+    if(distance < 1.0 || distanceFuture<1.0){
+        this->bloquage = 1;
+    }
+}
+
 
 ContenerCharges::ContenerCharges(int numberOfCharge){
     /*for(size_t i=0; i<numberOfCharge/4-1; i++){
@@ -352,9 +361,10 @@ ContenerCharges::ContenerCharges(int numberOfCharge){
         tab.at(tab.size()-1)->setPos(A1);
     }*/
 
-    double chargeValue = -20; //rand()%20-10;
+    double chargeValue = -5; //rand()%20-10;
     int intChargeValue = (int)chargeValue;
     tab.push_back(new Charge(chargeValue, Sphere(intChargeValue), Vector(), rand()%2, Vector()));
+    tab.at(tab.size()-1)->setColor(RED);
     Point A((double)(longueurFaceExt/3-3), (double)0.5,(double)(largeurFaceExt/3-3));
     tab.at(tab.size()-1)->setPos(A);
 
@@ -377,7 +387,7 @@ ContenerCharges::ContenerCharges(int numberOfCharge){
 
 
     //ChargeMobile = new Charge(-8, Sphere(.5, RED, Point((double)-15,(double)15,largeurFaceExt/2)), Vector(Point(-largeurFaceExt,largeurFaceExt,largeurFaceExt/2), Point(largeurFaceExt,largeurFaceExt,largeurFaceExt/2)), 0, Vector(0,0,0));
-    ChargeMobile = new Charge(20, Sphere(.5, RED, Point(-4,20,largeurFaceExt/2)), Vector(0,0,0), 0, Vector(0,0,0));
+    ChargeMobile = new Charge(5, Sphere(.5, RED, Point(-4,20,largeurFaceExt/2)), Vector(0,0,0), 0, Vector(0,0,0));
     calculCharge = 0;
     this->numberOfCharge = numberOfCharge;
 }
@@ -418,78 +428,97 @@ void ContenerCharges::render(){
 
 void ContenerCharges::update(double delta_t)
 {
-    if(this->ChargeMobile->getChargePos().y > 0.5)
-    {
-        Vector G = Vector(0,-9.81,0);
-        Vector VInit = Vector(4,-10,0.5);
-        Vector V = G.integral(delta_t)+VInit;
-        //Delta position
-        Vector XInit = Vector(-4,20,largeurFaceExt/2);
-        Vector X = V.integral(delta_t);
 
-        this->ChargeMobile->setPos(Point(X.x+this->ChargeMobile->getChargePos().x,X.y+this->ChargeMobile->getChargePos().y,X.z+this->ChargeMobile->getChargePos().z));
+    for(int i = 0; i < this->tab.size(); i++){
+
+        this->ChargeMobile->collision(tab.at(i));
+
     }
-    else{
-        //this->ChargeMobile->setPos(Point(this->ChargeMobile->getChargePos().x,0.5,this->ChargeMobile->getChargePos().z));
-        if(this->calculCharge==0 || calculCharge >= this->numberOfCharge)
-        {
-            this->ChargeMobile->initVectForce();
-            this->calculCharge = 0;
-        }
-        if(this->calculCharge<this->numberOfCharge)
-        {
-            ChargeMobile->calculCoulomb(tab.at(0));
 
-            //Calcul Mouvement
-            Vector F = ChargeMobile->getVect();
-            Vector A = (pow(10,4))*F;
-            Vector V = A.integral(delta_t);
+    std::cout<<"est bloque : "<<this->ChargeMobile->estBloquee()<<"\n";
+
+    if(!this->ChargeMobile->estBloquee()){
+        if(this->ChargeMobile->getChargePos().y > 0.5)
+        {
+            Vector G = Vector(0,-9.81,0);
+            Vector VInit = Vector(4,-10,0.5);
+            Vector V = G.integral(delta_t)+VInit;
+            //Delta position
+            Vector XInit = Vector(-4,20,largeurFaceExt/2);
             Vector X = V.integral(delta_t);
 
-            //std::cout << F.x << " " << F.y << " " << F.z << std::endl;
-            //std::cout << A.x << " " << A.y << " " << A.z << std::endl;
-            //std::cout << V.x << " " << V.y << " " << V.z << std::endl;
-            //Point ChargeMobile = ChargeMobile->getChargePos();
-            Point ChargeMobileCurrentPos=ChargeMobile->getChargePos();
-            Point Coordonnee(X.x+ChargeMobileCurrentPos.x, 0.5, X.z+ChargeMobileCurrentPos.z);
-            //Point Coordonnee(X.x,0.5,X.z);
-            //std::cout << X.x << " " << X.y << " " << X.z << std::endl;
-
-            //sortie de plan
-            //pour X
-            /*if(Coordonnee.x<1){Coordonnee.x=0.5+epaisseurFace;}
-            if(Coordonnee.x>longueurFaceExt-0.5){Coordonnee.x=longueurFaceExt-0.5-epaisseurFace;}
-            //pour Z
-            if(Coordonnee.z<1){Coordonnee.z=0.5+epaisseurFace;}
-            if(Coordonnee.z>largeurFaceExt-0.5){Coordonnee.z=largeurFaceExt-0.5-epaisseurFace;}
-            //Pour Y
-            //NADA
-            */
-
-            //UpdateCollision à faire en dehors de l'updateCharge et Recalculer les forces
-            this->ChargeMobile->setPos(Coordonnee);
-            std::cout<<"Coordonnee charge Mobile : "<<ChargeMobile->getChargePos().x<<"   "<<ChargeMobile->getChargePos().y<<"   "<<ChargeMobile->getChargePos().z<<" is the value\n";
-
-
-            //Affcihage vector force
-
-
-            calculCharge++;
-            tab.at(0)->update(delta_t);
-
-
-
-            //ChargeMobile->calculCoulomb(tab.at(0));
-            //std::cout<<ChargeMobile->getVect().x<<" is the value\n";
-            //glPushMatrix(); // Preserve the camera viewing point for further forms
-
-            /*Mouvement de la charge
-            Point posChargeMobile(ChargeMobile->getVect().x+ChargeMobile->getChargePos().x,ChargeMobile->getVect().y+ChargeMobile->getChargePos().y,ChargeMobile->getVect().z+ChargeMobile->getChargePos().z);
-            std::cout<<"Charge Mobile : "<<ChargeMobile->getVect().x<<"  "<<ChargeMobile->getVect().y<<"\n";
-            ChargeMobile->setPos(posChargeMobile);
-            glPopMatrix();*/
-
+            this->ChargeMobile->setPos(Point(X.x+this->ChargeMobile->getChargePos().x,X.y+this->ChargeMobile->getChargePos().y,X.z+this->ChargeMobile->getChargePos().z));
+        }
+        else{
+            //this->ChargeMobile->setPos(Point(this->ChargeMobile->getChargePos().x,0.5,this->ChargeMobile->getChargePos().z));
+            if(this->calculCharge==0 || calculCharge >= this->numberOfCharge)
+            {
+                this->ChargeMobile->initVectForce();
+                this->calculCharge = 0;
             }
+            if(this->calculCharge<this->numberOfCharge)
+            {
+                ChargeMobile->calculCoulomb(tab.at(0));
+
+                //Calcul Mouvement
+                Vector F = ChargeMobile->getVect();
+                Vector A = (pow(10,4))*F;
+                Vector V = A.integral(delta_t);
+                Vector X = V.integral(delta_t);
+
+                //std::cout << F.x << " " << F.y << " " << F.z << std::endl;
+                //std::cout << A.x << " " << A.y << " " << A.z << std::endl;
+                //std::cout << V.x << " " << V.y << " " << V.z << std::endl;
+                //Point ChargeMobile = ChargeMobile->getChargePos();
+                Point ChargeMobileCurrentPos=ChargeMobile->getChargePos();
+                Point Coordonnee(X.x+ChargeMobileCurrentPos.x, 0.5, X.z+ChargeMobileCurrentPos.z);
+                //Point Coordonnee(X.x,0.5,X.z);
+                //std::cout << X.x << " " << X.y << " " << X.z << std::endl;
+
+                //sortie de plan
+                //pour X
+                /*if(Coordonnee.x<1){Coordonnee.x=0.5+epaisseurFace;}
+                if(Coordonnee.x>longueurFaceExt-0.5){Coordonnee.x=longueurFaceExt-0.5-epaisseurFace;}
+                //pour Z
+                if(Coordonnee.z<1){Coordonnee.z=0.5+epaisseurFace;}
+                if(Coordonnee.z>largeurFaceExt-0.5){Coordonnee.z=largeurFaceExt-0.5-epaisseurFace;}
+                //Pour Y
+                //NADA
+                */
+
+                this->ChargeMobile->setPositionFuture(Coordonnee);
+                for(int i = 0; i < this->tab.size(); i++){
+                    this->ChargeMobile->collision(tab.at(i));
+                }
+
+                //UpdateCollision à faire en dehors de l'updateCharge et Recalculer les forces
+                if(!this->ChargeMobile->estBloquee()){
+                        this->ChargeMobile->setPos(Coordonnee);
+                }
+                //std::cout<<"Coordonnee charge Mobile : "<<ChargeMobile->getChargePos().x<<"   "<<ChargeMobile->getChargePos().y<<"   "<<ChargeMobile->getChargePos().z<<" is the value\n";
+
+
+                //Affcihage vector force
+
+
+                calculCharge++;
+                tab.at(0)->update(delta_t);
+
+
+
+                //ChargeMobile->calculCoulomb(tab.at(0));
+                //std::cout<<ChargeMobile->getVect().x<<" is the value\n";
+                //glPushMatrix(); // Preserve the camera viewing point for further forms
+
+                /*Mouvement de la charge
+                Point posChargeMobile(ChargeMobile->getVect().x+ChargeMobile->getChargePos().x,ChargeMobile->getVect().y+ChargeMobile->getChargePos().y,ChargeMobile->getVect().z+ChargeMobile->getChargePos().z);
+                std::cout<<"Charge Mobile : "<<ChargeMobile->getVect().x<<"  "<<ChargeMobile->getVect().y<<"\n";
+                ChargeMobile->setPos(posChargeMobile);
+                glPopMatrix();*/
+
+                }
+        }
+
     }
 
 
