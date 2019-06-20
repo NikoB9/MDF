@@ -167,7 +167,16 @@ void update(Form* formlist[MAX_FORMS_NUMBER], double delta_t)
     while(formlist[i] != NULL)
     {
         formlist[i]->update(delta_t);
+
+        //if(formlist[i+1] == NULL){
+
+
+
+            //Vector G = new Vector(0,-9.8,0);
+        //}
+
         i++;
+
     }
 }
 
@@ -353,6 +362,11 @@ int main(int argc, char* args[])
         forms_list[number_of_forms] = boardBase;
         number_of_forms++;
 
+        //Pente pour faire glisser la boule
+        /*Tobogan *pente = NULL;
+        pente = new Tobogan(Vector(-1,1,0), Vector(0,0,1), Point((epaisseurFace+hauteurContourPlateau), 0, (largeurFaceExt/2)-1.5 ), largeurFaceExt, 3, texture_mur);
+        forms_list[number_of_forms] = pente;
+        number_of_forms++;*/
 
 
 

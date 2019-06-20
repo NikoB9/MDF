@@ -47,7 +47,7 @@ return (float)(double(rand()) / (double(RAND_MAX) + 1.0));
 }
 
 Sphere::Sphere(int a){
-    //Crée une sphère de manière aléatoire
+    //Crï¿½e une sphï¿½re de maniï¿½re alï¿½atoire
     //Init random generator
     radius = .5;
     //Color temp(random(),random(),random());
@@ -78,6 +78,7 @@ Sphere::Sphere(double r, Color cl, Point org)
     radius = r;
     col = cl;
     pos = org;
+    //this->texture = mtexture;
 }
 
 
@@ -95,6 +96,8 @@ void Sphere::update(double delta_t)
 
 void Sphere::render()
 {
+    //glBindTexture(GL_TEXTURE_2D, texture);
+
     GLUquadric *quad;
     quad = gluNewQuadric();
 
@@ -102,10 +105,12 @@ void Sphere::render()
     gluQuadricDrawStyle(quad, GLU_FILL);
 
 
-    //Couleur sphère
+    //Couleur sphï¿½re
     glColor3f(this->col.r,this->col.g,this->col.b);
     //Barrycentre
     glTranslated(this->pos.x,this->pos.y,this->pos.z);
+    //Texture
+    //gluQuadricTexture(quad,GL_TRUE);
     //rotation
     //glRotated(theta, x, , z);
 
@@ -203,7 +208,7 @@ void Parallepipede_face::render()
     Form::render();
     glBegin(GL_QUADS);
     {
-        //extérieur
+        //extï¿½rieur
         //glColor3f(1,1,0);
         glTexCoord2d(0,1);
 
@@ -215,6 +220,51 @@ void Parallepipede_face::render()
         glTexCoord2d(1,0);
         glVertex3d(p3.x, p3.y, p3.z);
         //glColor3f(0,1,0);
+        glTexCoord2d(1,1);
+        glVertex3d(p4.x, p4.y, p4.z);
+    }
+    glEnd();
+}
+
+Tobogan::Tobogan(Vector v1, Vector v2, Point org, double l, double h, GLuint mtexture)
+{
+    vdir1 = 1.0 / v1.norm() * v1;
+    vdir2 = 1.0 / v2.norm() * v2;
+    anim.setPos(org);
+    length = l;
+    height = h;
+    this->texture = mtexture;
+}
+
+
+void Tobogan::update(double delta_t)
+{
+    // Do nothing, no physics associated to a Cube_face
+}
+
+
+void Tobogan::render()
+{
+    Point p1 = Point();
+    Point p2 = p1, p3, p4 = p1;
+    p2.translate(length*vdir1);
+    p3 = p2;
+    p3.translate(height*vdir2);
+    p4.translate(height*vdir2);
+
+    glBindTexture(GL_TEXTURE_2D, texture);
+
+
+    Form::render();
+    glBegin(GL_QUADS);
+    {
+        glTexCoord2d(0,1);
+        glVertex3d(p1.x, p1.y, p1.z);
+        std::cout << "x : " << p1.x << "y : " << p1.y<< "z : " << p1.z;
+        glTexCoord2d(0,0);
+        glVertex3d(p2.x, p2.y, p2.z);
+        glTexCoord2d(1,0);
+        glVertex3d(p3.x, p3.y, p3.z);
         glTexCoord2d(1,1);
         glVertex3d(p4.x, p4.y, p4.z);
     }
@@ -241,10 +291,36 @@ void Charge::update(double delta_t)
     //Calculs des charges fictives
     //std::cout<<tabCharges[0] -> getChargePos();
     //std::cout<<this-> tab->chargeValue<<"\n";
+    /*ti = 10;
+    f=20;
+    g = 9.8;
+    m = 0.0005489;
+    p = m*g;*/
+
+    if(this->bloquage == 0){
+        //vector initial
+
+
+
+        /*Vector V0 = Vector(1,1,1);
+        //Vector X0 = Vector(formlist[i]->getChargePos().x, formlist[i]->getChargePos().y, formlist[i]->getChargePos().z);
+        Vector X0 = Vector(-20,20,10);
+
+        Vector a = Vector(0, 0, 0);
+
+        Vector vitesse = a.integral(delta_t) + V0;
+        Vector X = vitesse.integral(delta_t) + X0;*/
+
+        //SCharge charge = &formlist[i];
+        //this->setPos(Point(X.x+this->getChargePos().x, X.y+this->getChargePos().y, X.z+this->getChargePos().z));
+        std::cout<< "x : " << this->getChargePos().x << "y : " << this->getChargePos().y << "z : " << this->getChargePos().z;
+
+    }
+
 
 }
 
-//Recupère une position de charge fictive et calcul le vecteur qui passe par la charge courante et la charge fictive.
+//Recupï¿½re une position de charge fictive et calcul le vecteur qui passe par la charge courante et la charge fictive.
 void Charge::vectDirecteur(Point chargeFictive){
     this->vectPorteur = Vector(getChargePos(), chargeFictive);
 }
@@ -300,10 +376,8 @@ ContenerCharges::ContenerCharges(int numberOfCharge){
         tab.push_back(new Charge(chargeValue, Sphere(intChargeValue), Vector(), rand()%2, Vector()));
     }*/
 
-
-    Color col(1.0f,0.0f,.5f);
-    Point p((longueurFaceExt/2)-8,0.5,largeurFaceExt/2);
-    ChargeMobile = new Charge(1,Sphere(0.5, BLUE,p),Vector(),0,Vector());
+    //ChargeMobile = new Charge(-8, Sphere(.5, RED, Point((double)-15,(double)15,largeurFaceExt/2)), Vector(Point(-largeurFaceExt,largeurFaceExt,largeurFaceExt/2), Point(largeurFaceExt,largeurFaceExt,largeurFaceExt/2)), 0, Vector(0,0,0));
+    ChargeMobile = new Charge(-8, Sphere(.5, RED, Point(-4,20,largeurFaceExt/2)), Vector(0,0,0), 0, Vector(0,0,0));
     calculCharge = 0;
 }
 
@@ -373,8 +447,34 @@ void ContenerCharges::update(double delta_t)
     for(size_t i = 0; i < tab.size(); i++){
         tab.at(i)->update(delta_t);
     }
+    ChargeMobile->render();
     ChargeMobile->calculCoulomb(tab.at(0));
     calculCharge++;
+
+    if(this->ChargeMobile->getChargePos().y > 0.5)
+    {
+        Vector G = Vector(0,-9.81,0);
+        Vector VInit = Vector(4,-10,0.5);
+        Vector V = G.integral(delta_t)+VInit;
+        //Delta position
+        Vector XInit = Vector(-4,20,largeurFaceExt/2);
+        Vector X = V.integral(delta_t);
+
+        this->ChargeMobile->setPos(Point(X.x+this->ChargeMobile->getChargePos().x,X.y+this->ChargeMobile->getChargePos().y,X.z+this->ChargeMobile->getChargePos().z));
+    }
+    if(this->ChargeMobile->getChargePos().y<=0.5){
+        this->ChargeMobile->setPos(Point(this->ChargeMobile->getChargePos().x,0.5,this->ChargeMobile->getChargePos().z));
+
+    }
+    //ChargeMobile->calculCoulomb(tab.at(0));
+    //std::cout<<ChargeMobile->getVect().x<<" is the value\n";
+    //glPushMatrix(); // Preserve the camera viewing point for further forms
+
+    /*Mouvement de la charge
+    Point posChargeMobile(ChargeMobile->getVect().x+ChargeMobile->getChargePos().x,ChargeMobile->getVect().y+ChargeMobile->getChargePos().y,ChargeMobile->getVect().z+ChargeMobile->getChargePos().z);
+    std::cout<<"Charge Mobile : "<<ChargeMobile->getVect().x<<"  "<<ChargeMobile->getVect().y<<"\n";
+    ChargeMobile->setPos(posChargeMobile);
+    glPopMatrix();*/
 
 
 }

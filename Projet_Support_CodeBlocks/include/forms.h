@@ -50,6 +50,7 @@ private:
     // => no center required here, information is stored in the anim object
     double radius;
     Point pos;
+    GLuint texture;
 public:
     Sphere(double r = 1.0, Color cl = Color(), Point org = Point());
     Sphere(int a);
@@ -92,6 +93,20 @@ public:
     void render();
 };
 
+class Tobogan : public Form
+{
+    private :
+    Vector vdir1, vdir2;
+    double length, height, depth;
+    GLuint texture;
+public:
+    Tobogan(Vector v1 = Vector(1,0,0), Vector v2 = Vector(0,0,1),
+          Point org = Point(), double length = 1.0, double height = 1.0,
+          GLuint texture = loadTexture("./textures/02.jpg"));
+    void update(double delta_t);
+    void render();
+};
+
 // Charges
 class Charge: public Form
 {
@@ -121,6 +136,7 @@ public:
     Vector getVect(){return this->force;}
     void initVectForce(){force=Vector();}
     void setPos(Point p){this->sphere.setPos(p);}
+    void setForce(Vector F){this->force=F;}
     //void calculChargeFictive(std::vector<Charge*> vecCharge);
     /*std::vector<Charge*> vecCharge;
     void actualiseVec(std::vector<Charge*> vecCharge);*/
