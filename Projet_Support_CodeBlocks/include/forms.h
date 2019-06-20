@@ -131,6 +131,7 @@ private:
     std::vector<Charge*> tab;
     int numberOfCharge;
     Charge *ChargeMobile;
+    int calculCharge;
 public:
     ContenerCharges(int numberOfCharge=0);
     void render();

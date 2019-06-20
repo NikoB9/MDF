@@ -252,7 +252,7 @@ void Charge::vectDirecteur(Point chargeFictive){
 void Charge::calculCoulomb(Charge *fictive){
     double chargeFictiveValue = fictive->chargeValue;
     vectDirecteur(fictive->sphere.getSpherePos());
-    this -> force += ((8.99*pow(10,9))*(this -> chargeValue * fictive->chargeValue)/pow(vectPorteur.norm(),3))*(this -> vectPorteur);
+    this -> force += ((8.99*pow(10,-3))*(this -> chargeValue * fictive->chargeValue)/pow(vectPorteur.norm(),3))*(this -> vectPorteur);
 }
 
 Point Charge::getChargePos(){
@@ -261,19 +261,19 @@ Point Charge::getChargePos(){
 
 
 ContenerCharges::ContenerCharges(int numberOfCharge){
-    for(size_t i=0; i<numberOfCharge/4; i++){
+    for(size_t i=0; i<numberOfCharge/4-1; i++){
         //couloir droit
         double chargeValue = rand()%20-10;
         int intChargeValue = (int)chargeValue;
-        tab.push_back(new Charge(chargeValue, Sphere(intChargeValue), Vector(), rand()%2, Vector()));
-        Point A((double)(longueurFaceExt/numberOfCharge)*(i*4), 0.5,largeurFaceExt/3);
+        tab.push_back(new Charge(3, Sphere(3), Vector(), rand()%2, Vector()));
+        Point A((double)(longueurFaceExt/numberOfCharge)*(i*4)+2, 0.5,largeurFaceExt/3);
         tab.at(tab.size()-1)->setPos(A);
 
         //couloir gauche
         double chargeValue1 = rand()%20-10;
         int intChargeValue1 = (int)chargeValue1;
-        tab.push_back(new Charge(chargeValue1, Sphere(intChargeValue1), Vector(), rand()%2, Vector()));
-        Point A1((double)(longueurFaceExt/numberOfCharge)*(i*4), 0.5,(largeurFaceExt/3)*2.0);
+        tab.push_back(new Charge(3, Sphere(3), Vector(), rand()%2, Vector()));
+        Point A1((double)(longueurFaceExt/numberOfCharge)*(i*4)+2, 0.5,(largeurFaceExt/3)*2.0);
         tab.at(tab.size()-1)->setPos(A1);
     }
 
@@ -294,7 +294,11 @@ ContenerCharges::ContenerCharges(int numberOfCharge){
         tab.push_back(new Charge(chargeValue, Sphere(intChargeValue), Vector(), rand()%2, Vector()));
     }*/
 
-    ChargeMobile = new Charge();
+
+    Color col(1.0f,0.0f,.5f);
+    Point p((longueurFaceExt/2)-8,0.5,largeurFaceExt/2);
+    ChargeMobile = new Charge(1,Sphere(0.5, col,p),Vector(),0,Vector());
+    calculCharge = 0;
 }
 
 void ContenerCharges::render(){
@@ -326,15 +330,46 @@ void ContenerCharges::render(){
         glPopMatrix(); // Restore the camera viewing point for next object
         i++;
     }
+    glPushMatrix(); // Preserve the camera viewing point for further forms
+    ChargeMobile->render();
+    glPopMatrix(); // Restore the camera viewing point for next object
 }
 
 void ContenerCharges::update(double delta_t)
 {
+    if(calculCharge==0){this->ChargeMobile->initVectForce();}
+    if(calculCharge>=this->numberOfCharge){
+        calculCharge=0;
+        //Calcul Mouvement
+        Vector resForce = ChargeMobile->getVect()*(1/(9.0*pow(10,-1)))*pow(ANIM_DELAY,2);
+        std::cout<<"Vector Force : "<<ChargeMobile->getVect().x<<"   "<<ChargeMobile->getVect().y<<"   "<<ChargeMobile->getVect().z<<" is the value\n";
+        //Point ChargeMobile = ChargeMobile->getChargePos();
+        Point ChargeMobileCurrentPos=ChargeMobile->getChargePos();
+        Point Coordonnee(resForce.x+ChargeMobileCurrentPos.x, 0.5, resForce.z+ChargeMobileCurrentPos.z);
+        //sortie de plan
+        //pour X
+        if(Coordonnee.x<1){Coordonnee.x=0.5+epaisseurFace;}
+        if(Coordonnee.x>longueurFaceExt-0.5){Coordonnee.x=longueurFaceExt-0.5-epaisseurFace;}
+        //pour Z
+        if(Coordonnee.z<1){Coordonnee.z=0.5+epaisseurFace;}
+        if(Coordonnee.z>largeurFaceExt-0.5){Coordonnee.z=largeurFaceExt-0.5-epaisseurFace;}
+        //Pour Y
+        //NADA
+        this->ChargeMobile->setPos(Coordonnee);
+        std::cout<<"Coordonnee charge Mobile : "<<ChargeMobile->getChargePos().x<<"   "<<ChargeMobile->getChargePos().y<<"   "<<ChargeMobile->getChargePos().z<<" is the value\n";
+
+
+        //Affcihage vector force
+
+
+
+    }
     for(size_t i = 0; i < tab.size(); i++){
         tab.at(i)->update(delta_t);
     }
     ChargeMobile->calculCoulomb(tab.at(0));
-    std::cout<<ChargeMobile->getVect().x<<" is the value\n";
+    calculCharge++;
+
 
 }
 

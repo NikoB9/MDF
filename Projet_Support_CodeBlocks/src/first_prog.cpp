@@ -23,7 +23,7 @@
 #include "projet.h"
 
 #define PI 3.14159265
-#define NOMBRE_CHARGE 100
+#define NOMBRE_CHARGE 20
 
 using namespace std;
 
@@ -354,64 +354,7 @@ int main(int argc, char* args[])
         number_of_forms++;
 
 
-        //G�re la rotation des sph�res
-        /*double thetaSpheres=0.0;
-        //Satellite1
-        Color clrSt1(0,218,0);
-        Sphere *satellite1 = NULL;
-        satellite1 = new Sphere(0.5, clrSt1, Point(2, 0, 0));
-        forms_list[number_of_forms] = satellite1;
-        number_of_forms++;
 
-        //Satellite2
-        Color clrSt2(2, 218, 0);
-        Sphere *satellite2 = NULL;
-        satellite2 = new Sphere(0.5, clrSt2, Point(0, 2, 0));
-        forms_list[number_of_forms] = satellite2;
-        number_of_forms++;
-
-        //Charges
-        Color c1(0, 255, 0);
-        Point p(-2,3,0);
-        Color c2(255, 0, 0);
-        Point p1(3,2,0);
-
-        Charge *pCharge1 = NULL;
-        pCharge1 = new Charge(3.0,Sphere(.5, c2, p1), Vector(p,p1), 1);
-        forms_list[number_of_forms] = pCharge1;
-        number_of_forms++;*/
-
-        //Charges
-        /*Color c1(0, 255, 0);
-        Point p(-2,3,0);
-        Color c2(25, 25, 25);
-        Point p1(3,2,0);
-        Point p3(5,5,3);
-        Color c3(0, 255, 200);*/
-
-        //std::vector<Charge*> vecCharge{};
-        //Charge* tabCharges[2];
-
-        /*Charge *pCharge1 = NULL;
-        pCharge1 = new Charge(3.0,Sphere(.5, c2, p1), Vector(), 1, Vector());
-        forms_list[number_of_forms] = pCharge1;
-        number_of_forms++;
-        //vecCharge.push_back(pCharge1);
-        //contener->ajoutCharge(vecCharge.at(0));
-        //contener->ajoutCharge(pCharge1);
-
-
-        Charge *pCharge2 = NULL;
-        pCharge2 = new Charge(6.0,Sphere(.5, c3, p3), Vector(), 1, Vector());
-        forms_list[number_of_forms] = pCharge2;
-        //contener->ajoutCharge(*pCharge2);
-        number_of_forms++;
-
-        Sphere *pSphere = NULL;
-        pSphere = new Sphere(2);
-        forms_list[number_of_forms] = pSphere;
-        //contener->ajoutCharge(*pCharge2);
-        number_of_forms++;*/
 
         //Cr�ation et positionner les charges
         ContenerCharges *contener=NULL;
@@ -419,10 +362,8 @@ int main(int argc, char* args[])
         forms_list[number_of_forms]=contener;
         number_of_forms++;
 
-        /*Charge *pChargeTombe = NULL;
-        pChargeTombe = new Charge();
-        forms_list[number_of_forms]=pChargeTombe;
-        number_of_forms++;*/
+        /*Charge *pCharge = NULL;
+        pCharge = new*/
 
         // Get first "current time"
         previous_time = SDL_GetTicks();
