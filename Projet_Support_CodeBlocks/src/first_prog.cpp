@@ -24,6 +24,9 @@
 
 #define PI 3.14159265
 #define NOMBRE_CHARGE 25
+#include <windows.h>
+
+
 
 using namespace std;
 
@@ -63,6 +66,19 @@ void close(SDL_Window** window);
 /***************************************************************************/
 /* Functions implementations                                               */
 /***************************************************************************/
+void usleep(__int64 usec)
+{
+    HANDLE timer;
+    LARGE_INTEGER ft;
+
+    ft.QuadPart = -(10*usec); // Convert to 100 nanosecond interval, negative value indicates relative time
+
+    timer = CreateWaitableTimer(NULL, TRUE, NULL);
+    SetWaitableTimer(timer, &ft, 0, NULL, NULL, 0);
+    WaitForSingleObject(timer, INFINITE);
+    CloseHandle(timer);
+}
+
 bool init(SDL_Window** window, SDL_GLContext* context)
 {
     // Initialization flag
@@ -419,7 +435,7 @@ int main(int argc, char* args[])
                     switch(key_pressed)
                     {
                     // Quit the program when 'q' or Escape keys are pressed
-                    case SDLK_q:
+                    //case SDLK_q:
                     case SDLK_ESCAPE:
                         quit = true;
                         break;
@@ -445,6 +461,29 @@ int main(int argc, char* args[])
                         theta+=1.5* PI / 180.0;
                         std::cout<<"rho : "<<rho<<"  theta : "<<theta<<"   phi  : "<<phi<<" \n";
                         std::cout<<"x : "<<camera_position.x<<"  y:"<<camera_position.y<<"  z:"<<camera_position.z<<"\n";
+                        break;
+                     case SDLK_p:
+                        contener->setPause(true);
+                        contener->setColor(GREEN);
+                        contener->setBloque(false);
+                        break;
+                     case SDLK_RETURN:
+                        contener->setPause(false);
+                        contener->setBloque(0);
+                        //usleep(2000);
+                        contener->setColor(RED);
+                        break;
+                     case SDLK_z:
+                            contener->moveUp();
+                        break;
+                     case SDLK_q:
+                            contener->moveLeft();
+                        break;
+                     case SDLK_s:
+                            contener->moveDown();
+                        break;
+                     case SDLK_d:
+                            contener->moveRight();
                         break;
 
                     default:

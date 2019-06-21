@@ -59,6 +59,7 @@ public:
     void render();
     void setPos(Point pos);
     Point getSpherePos();
+    void setCol(Color c){this->col=c;}
 
 };
 
@@ -138,8 +139,9 @@ public:
     void setPos(Point p){this->sphere.setPos(p);}
     void setForce(Vector F){this->force=F;}
     bool estBloquee(){ return this->bloquage;}
-    void collision(Charge *charge);
-    void setColor(Color c){this->col = c;}
+    void setBloquee(bool B){this->bloquage=B; std::cout<<this->bloquage<<"\n";}
+    void collisionCharge(Charge *charge);
+    void setColor(Color c){this->sphere.setCol(c);}
     void setPositionFuture(Point P){positionFuture=P;}
     //void calculChargeFictive(std::vector<Charge*> vecCharge);
     /*std::vector<Charge*> vecCharge;
@@ -152,6 +154,7 @@ private:
     int numberOfCharge;
     Charge *ChargeMobile;
     int calculCharge;
+    bool pause;
 public:
     ContenerCharges(int numberOfCharge=0);
     void render();
@@ -159,7 +162,15 @@ public:
     void ajoutCharge(Charge* charge);
     Vector updatePosition(double delta_t, bool ret);
     std::vector<Charge*> getTab();
-
+    bool isPause(){return this->pause;}
+    void setPause(bool val){this->pause = val;}
+    void moveRight();
+    void moveLeft();
+    void moveUp();
+    void moveDown();
+    bool isSuperposed(Point futur);
+    void setBloque(bool B){this->ChargeMobile->setBloquee(B);}
+    void setColor(Color c){this->ChargeMobile->setColor(c);}
 };
 
 
