@@ -141,7 +141,7 @@ public:
     bool estBloquee(){ return this->bloquage;}
     void setBloquee(bool B){this->bloquage=B;}
     void collisionCharge(Charge *charge);
-    bool collisionMur(double newX, double newZ);
+    //bool collisionMur(double newX, double newZ);
     void setColor(Color c){this->sphere.setCol(c);}
     void setPositionFuture(Point P){positionFuture=P;}
     //void calculChargeFictive(std::vector<Charge*> vecCharge);

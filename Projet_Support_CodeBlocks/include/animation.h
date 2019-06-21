@@ -29,6 +29,7 @@ public:
     void setSpeed(Vector vect) {spd = vect;}
     const Point getPos() {return pos;}
     void setPos(Point pt) {pos = pt;}
+
 };
 
 

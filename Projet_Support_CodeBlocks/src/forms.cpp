@@ -343,7 +343,7 @@ void Charge::collisionCharge(Charge *charge){
     }
 }
 
-bool Charge::collisionMur(double newX, double newZ){
+/*bool Charge::collisionMur(double newX, double newZ){
     Point actualCoordinates = this->getChargePos();
 
     if((this->positionFuture.x <= 0.5 + epaisseurFace || this->positionFuture.x >= longueurFaceExt - epaisseurFace - 0.5)
@@ -361,7 +361,7 @@ bool Charge::collisionMur(double newX, double newZ){
     }
 
     return 0;
-}
+}*/
 
 
 ContenerCharges::ContenerCharges(int numberOfCharge){
@@ -490,25 +490,13 @@ void ContenerCharges::update(double delta_t)
             Vector V = A.integral(delta_t);
             Vector X = V.integral(delta_t);
 
-            //std::cout << F.x << " " << F.y << " " << F.z << std::endl;
+            std::cout << F.x <<" " << F.z << std::endl;
             //std::cout << A.x << " " << A.y << " " << A.z << std::endl;
             //std::cout << V.x << " " << V.y << " " << V.z << std::endl;
             //Point ChargeMobile = ChargeMobile->getChargePos();
             Point ChargeMobileCurrentPos=ChargeMobile->getChargePos();
             Point Coordonnee(X.x+ChargeMobileCurrentPos.x, 0.5, X.z+ChargeMobileCurrentPos.z);
             //Point Coordonnee(X.x,0.5,X.z);
-            //std::cout << X.x << " " << X.y << " " << X.z << std::endl;
-
-            //sortie de plan
-            //pour X
-            /*if(Coordonnee.x<1){Coordonnee.x=0.5+epaisseurFace;}
-            if(Coordonnee.x>longueurFaceExt-0.5){Coordonnee.x=longueurFaceExt-0.5-epaisseurFace;}
-            //pour Z
-            if(Coordonnee.z<1){Coordonnee.z=0.5+epaisseurFace;}
-            if(Coordonnee.z>largeurFaceExt-0.5){Coordonnee.z=largeurFaceExt-0.5-epaisseurFace;}
-            //Pour Y
-            //NADA
-            */
 
             //Affectation de la position future à l'attribu futurPos de la chargeMobile
             this->ChargeMobile->setPositionFuture(Coordonnee);
@@ -517,10 +505,31 @@ void ContenerCharges::update(double delta_t)
             }
 
             //UpdateCollision à faire en dehors de l'updateCharge et Recalculer les forces
-            if(!this->ChargeMobile->estBloquee()){
-                if(!this->ChargeMobile->collisionMur(X.x,X.z)){
-                    this->ChargeMobile->setPos(Coordonnee);
+            if(!this->ChargeMobile->estBloquee())
+            {
+                if(Coordonnee.x>(epaisseurFace+0.5) && Coordonnee.x<(longueurFaceExt-epaisseurFace-0.5)
+                    && Coordonnee.z>(epaisseurFace+0.5) && Coordonnee.z<(largeurFaceExt-epaisseurFace-0.5))
+                {
+                    //CAS NON COLLISION
+                    //On ne change pas la force calculée
                 }
+                else
+                { //CAS COLLISION
+                    //Calcul d'une nouvelle force amortie et dans l'autre sens
+                    if(!(Coordonnee.x>(epaisseurFace+0.5) && Coordonnee.x<(longueurFaceExt-epaisseurFace-0.5))){
+                            F.x=-1*F.x;
+                    }
+                    if(!(Coordonnee.z>(epaisseurFace+0.5) && Coordonnee.z<(largeurFaceExt-epaisseurFace-0.5))){
+                        F.z=-1*F.z;
+                    }
+                    A = (pow(10,4)/3)*F;
+                    V = A.integral(delta_t);
+                    X = V.integral(delta_t);
+
+                    std::cout<<"colision invertion\n";
+                    Coordonnee = Point(X.x+ChargeMobileCurrentPos.x, 0.5, X.z+ChargeMobileCurrentPos.z);
+                }
+                this->ChargeMobile->setPos(Coordonnee);
             }
             //std::cout<<"Coordonnee charge Mobile : "<<ChargeMobile->getChargePos().x<<"   "<<ChargeMobile->getChargePos().y<<"   "<<ChargeMobile->getChargePos().z<<" is the value\n";
 
