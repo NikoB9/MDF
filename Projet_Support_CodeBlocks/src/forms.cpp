@@ -338,8 +338,23 @@ void Charge::collisionCharge(Charge *charge){
         /*Vector F = this->getVect();
         Vector A = (pow(10,4))*F;
         Vector V = A.integral(delta_t);
-        Vector X = V.integral(delta_t);
-        Point Coordonnee(X.x+ChargeMobileCurrentPos.x, 0.5, X.z+ChargeMobileCurrentPos.z);*/
+        Vector X = V.integral(delta_t);*/
+        if(this->getChargePos().x > charge->getChargePos().x){
+            if( this->getChargePos().z > charge->getChargePos().z){
+                this->setPos(Point(charge->getChargePos().x+.75, charge->getChargePos().y, charge->getChargePos().z+.75));
+            }
+            else{
+                this->setPos(Point(charge->getChargePos().x+.75, charge->getChargePos().y, charge->getChargePos().z-.75));
+            }
+        }
+        if(this->getChargePos().x < charge->getChargePos().x){
+            if( this->getChargePos().z < charge->getChargePos().z){
+                this->setPos(Point(charge->getChargePos().x-.75, charge->getChargePos().y, charge->getChargePos().z-.75));
+            }
+            else{
+                this->setPos(Point(charge->getChargePos().x-.75, charge->getChargePos().y, charge->getChargePos().z+.75));
+            }
+        }
     }
 }
 
