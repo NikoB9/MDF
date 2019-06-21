@@ -37,7 +37,7 @@ Sphere::Sphere(int a){
     //Init random generator
     radius = .5;
     //Color temp(random(),random(),random());
-    float ratio = abs(a);
+    float ratio = abs(a)/10.0;
 
     if(a>=0){
         //charge positive
@@ -69,7 +69,7 @@ Sphere::Sphere(double r, Color cl, Point org)
 
 void Sphere::setPos(Point pos){
     this->pos = pos;
-    //std::cout<<pos.x<<"\n";
+    std::cout<<pos.x<<"\n";
 }
 
 
@@ -407,6 +407,7 @@ ContenerCharges::ContenerCharges(int numberOfCharge){
     ChargeMobile = new Charge(-5, Sphere(.5, RED, Point(-4,20,largeurFaceExt/2)), Vector(0,0,0), 0, Vector(0,0,0));
     calculCharge = 0;
     this->numberOfCharge = numberOfCharge;
+    this->pause=false;
 }
 
 void ContenerCharges::render(){
@@ -446,15 +447,13 @@ void ContenerCharges::render(){
 void ContenerCharges::update(double delta_t)
 {
 
-    for(size_t i = 0; i < this->tab.size(); i++){
-
+    for(size_t i = 0; i < this->tab.size() && !this->isPause(); i++){
         this->ChargeMobile->collisionCharge(tab.at(i));
-
     }
 
     std::cout<<"est bloque : "<<this->ChargeMobile->estBloquee()<<"\n";
 
-    if(!this->ChargeMobile->estBloquee()){
+    if(!this->ChargeMobile->estBloquee() && this->isPause()==false){
         if(this->ChargeMobile->getChargePos().y > 0.5)
         {
             Vector G = Vector(0,-9.81,0);
@@ -568,4 +567,48 @@ void ContenerCharges::ajoutCharge(Charge* charge){
 
 std::vector<Charge*> ContenerCharges::getTab(){
     return this->tab;
+}
+
+void ContenerCharges::moveRight(){
+    Point futur(this->ChargeMobile->getChargePos().x+1,0.5,this->ChargeMobile->getChargePos().z);
+    if(this->isPause() && isSuperposed(futur)){
+            this->ChargeMobile->setPos(futur);
+            this->ChargeMobile->setPositionFuture(futur);
+    }
+}
+
+void ContenerCharges::moveLeft(){
+    Point futur(this->ChargeMobile->getChargePos().x-1,0.5,this->ChargeMobile->getChargePos().z);
+    if(this->isPause() && isSuperposed(futur)){
+            this->ChargeMobile->setPos(futur);
+            this->ChargeMobile->setPositionFuture(futur);
+    }
+}
+
+void ContenerCharges::moveUp(){
+    Point futur(this->ChargeMobile->getChargePos().x,0.5,this->ChargeMobile->getChargePos().z-1);
+    if(this->isPause() && isSuperposed(futur)){
+            this->ChargeMobile->setPos(futur);
+            this->ChargeMobile->setPositionFuture(futur);
+    }
+}
+
+void ContenerCharges::moveDown(){
+    Point futur(this->ChargeMobile->getChargePos().x,0.5,this->ChargeMobile->getChargePos().z+1);
+    if(this->isPause() && isSuperposed(futur)){
+        this->ChargeMobile->setPos(futur);
+        this->ChargeMobile->setPositionFuture(futur);
+    }
+}
+
+bool ContenerCharges::isSuperposed(Point futur){
+    for(size_t i=0; i<this->tab.size(); i++){
+        double distance = Vector(futur, tab.at(i)->getChargePos()).norm();
+        //Si la distance anticipée pose un problème de superposition on retourn faux
+        if(distance<1.0) return false;
+    }
+    //conditions murs
+    if(futur.z>(largeurFaceExt-epaisseurFace) || futur.z<epaisseurFace) return false;
+    if(futur.x>longueurFaceExt-epaisseurFace || futur.x<epaisseurFace) return false;
+    return true;
 }
