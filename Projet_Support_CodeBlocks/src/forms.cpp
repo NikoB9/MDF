@@ -38,7 +38,7 @@ Sphere::Sphere(int a){
     radius = .5;
     //Color temp(random(),random(),random());
     float ratio = a/10.0f;
-    std::cout<<"a   : "<<a<<"ratio : "<<ratio<<"\n";
+    //std::cout<<"a   : "<<a<<"ratio : "<<ratio<<"\n";
 
     if(a>=0){
         //charge positive
@@ -70,7 +70,7 @@ Sphere::Sphere(double r, Color cl, Point org)
 
 void Sphere::setPos(Point pos){
     this->pos = pos;
-    std::cout<<pos.x<<"\n";
+    //std::cout<<pos.x<<"\n";
 }
 
 
@@ -242,7 +242,7 @@ void Tobogan::render()
     {
         glTexCoord2d(0,1);
         glVertex3d(p1.x, p1.y, p1.z);
-        std::cout << "x : " << p1.x << "y : " << p1.y<< "z : " << p1.z;
+        //std::cout << "x : " << p1.x << "y : " << p1.y<< "z : " << p1.z;
         glTexCoord2d(0,0);
         glVertex3d(p2.x, p2.y, p2.z);
         glTexCoord2d(1,0);
@@ -301,7 +301,7 @@ void Charge::update(double delta_t)
 
         //SCharge charge = &formlist[i];
         //this->setPos(Point(X.x+this->getChargePos().x, X.y+this->getChargePos().y, X.z+this->getChargePos().z));
-        std::cout<< "x : " << this->getChargePos().x << "y : " << this->getChargePos().y << "z : " << this->getChargePos().z;
+        //std::cout<< "x : " << this->getChargePos().x << "y : " << this->getChargePos().y << "z : " << this->getChargePos().z;
 
     }
 
@@ -456,7 +456,7 @@ void ContenerCharges::update(double delta_t)
         this->ChargeMobile->collisionCharge(tab.at(i));
     }
 
-    std::cout<<"est bloque : "<<this->ChargeMobile->estBloquee()<<"\n";
+    //std::cout<<"est bloque : "<<this->ChargeMobile->estBloquee()<<"\n";
 
     if(!this->ChargeMobile->estBloquee() && this->isPause()==false){
         if(this->ChargeMobile->getChargePos().y > 0.5)

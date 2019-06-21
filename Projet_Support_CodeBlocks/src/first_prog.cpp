@@ -411,6 +411,10 @@ int main(int argc, char* args[])
         /*Charge *pCharge = NULL;
         pCharge = new*/
 
+        std::cout<<"Bienvenue,\n\nLes regles du jeu sont  : \n\tFleches directionnelles pour faire tourner la camera\n";
+        std::cout<<"\n\tA n'importe quel moment appuyez sur P pour mettre en pause le jeu. Deplacez la charge avec les touches Z/Q/S/D.\n";
+        std::cout<<"\tAppuyez sur Entrer pour reprendre la simulation.\n\nBon jeu :) \n\n";
+
         // Get first "current time"
         previous_time = SDL_GetTicks();
         // While application is running
@@ -443,31 +447,33 @@ int main(int argc, char* args[])
                     //Modif Position camera
                      case SDLK_UP:
                         phi-=1.5* PI / 180.0;
-                        std::cout<<"rho : "<<rho<<"  theta : "<<theta<<"   phi  : "<<phi<<" \n";
-                        std::cout<<"x : "<<camera_position.x<<"  y:"<<camera_position.y<<"  z:"<<camera_position.z<<"\n";
+                        //std::cout<<"rho : "<<rho<<"  theta : "<<theta<<"   phi  : "<<phi<<" \n";
+                        //std::cout<<"x : "<<camera_position.x<<"  y:"<<camera_position.y<<"  z:"<<camera_position.z<<"\n";
                         break;
                     case SDLK_DOWN:
                         phi+=1.5* PI / 180.0;
-                        std::cout<<"rho : "<<rho<<"  theta : "<<theta<<"   phi  : "<<phi<<" \n";
-                        std::cout<<"x : "<<camera_position.x<<"  y:"<<camera_position.y<<"  z:"<<camera_position.z<<"\n";
+                        //std::cout<<"rho : "<<rho<<"  theta : "<<theta<<"   phi  : "<<phi<<" \n";
+                        //std::cout<<"x : "<<camera_position.x<<"  y:"<<camera_position.y<<"  z:"<<camera_position.z<<"\n";
                         break;
 
                     case SDLK_RIGHT:
                         theta-=1.5* PI / 180.0;
-                        std::cout<<"rho : "<<rho<<"  theta : "<<theta<<"   phi  : "<<phi<<" \n";
-                        std::cout<<"x : "<<camera_position.x<<"  y:"<<camera_position.y<<"  z:"<<camera_position.z<<"\n";
+                        //std::cout<<"rho : "<<rho<<"  theta : "<<theta<<"   phi  : "<<phi<<" \n";
+                        //std::cout<<"x : "<<camera_position.x<<"  y:"<<camera_position.y<<"  z:"<<camera_position.z<<"\n";
                         break;
                      case SDLK_LEFT:
                         theta+=1.5* PI / 180.0;
-                        std::cout<<"rho : "<<rho<<"  theta : "<<theta<<"   phi  : "<<phi<<" \n";
-                        std::cout<<"x : "<<camera_position.x<<"  y:"<<camera_position.y<<"  z:"<<camera_position.z<<"\n";
+                        //std::cout<<"rho : "<<rho<<"  theta : "<<theta<<"   phi  : "<<phi<<" \n";
+                        //std::cout<<"x : "<<camera_position.x<<"  y:"<<camera_position.y<<"  z:"<<camera_position.z<<"\n";
                         break;
                      case SDLK_p:
+                         std::cout<<"\nMode Pause ! \n";
                         contener->setPause(true);
                         contener->setColor(GREEN);
                         contener->setBloque(false);
                         break;
                      case SDLK_RETURN:
+                         std::cout<<"\nReprise ! \n";
                         contener->setPause(false);
                         contener->setBloque(0);
                         //usleep(2000);
