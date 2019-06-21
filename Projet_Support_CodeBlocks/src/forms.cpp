@@ -37,16 +37,17 @@ Sphere::Sphere(int a){
     //Init random generator
     radius = .5;
     //Color temp(random(),random(),random());
-    float ratio = abs(a)/10.0;
+    float ratio = a/10.0f;
+    std::cout<<"a   : "<<a<<"ratio : "<<ratio<<"\n";
 
     if(a>=0){
         //charge positive
         //color setter
-        Color tempPos(ratio,ratio,1.0f);
+        Color tempPos(.8f-ratio,.8f-ratio,1.0f);
         col=tempPos;
     }
-    else{
-        Color tempNeg(1.0f,ratio,ratio);
+    else{;
+        Color tempNeg(1.f,.8f-ratio,.8f-ratio);
         col=tempNeg;
     }
 
@@ -312,7 +313,7 @@ void Charge::vectDirecteur(Point chargeFictive){
 }
 
 void Charge::calculCoulomb(Charge *fictive){
-    double chargeFictiveValue = fictive->chargeValue;
+    //double chargeFictiveValue = fictive->chargeValue;
     vectDirecteur(fictive->sphere.getSpherePos());
     this -> force += ((8.99*pow(10,-3))*(this -> chargeValue * fictive->chargeValue)/pow(vectPorteur.norm(),3))*(this -> vectPorteur);
 }
@@ -325,7 +326,7 @@ void Charge::collisionCharge(Charge *charge){
     /*Distance entre 2 points : Norme
     AB=√(xB−xA)²+(yB−yA)²+(zB−zA)².
     */
-    double distance = Vector(this->getChargePos(), charge->getChargePos()).norm();
+    //double distance = Vector(this->getChargePos(), charge->getChargePos()).norm();
     double distanceFuture = Vector(this->positionFuture, charge->getChargePos()).norm();
     if(distanceFuture<1.0){
         this->bloquage = 1;
@@ -342,7 +343,9 @@ void Charge::collisionCharge(Charge *charge){
     }
 }
 
-bool Charge::collisionMur(Point actualCoordinates, double newX, double newZ){
+bool Charge::collisionMur(double newX, double newZ){
+    Point actualCoordinates = this->getChargePos();
+
     if((this->positionFuture.x <= 0.5 + epaisseurFace || this->positionFuture.x >= longueurFaceExt - epaisseurFace - 0.5)
        && (this->positionFuture.z <= 0.5 + epaisseurFace  || this->positionFuture.z >= largeurFaceExt - epaisseurFace - 0.5)){
         this->setPos(Point(actualCoordinates.x, 0.5, actualCoordinates.z));
@@ -364,15 +367,17 @@ bool Charge::collisionMur(Point actualCoordinates, double newX, double newZ){
 ContenerCharges::ContenerCharges(int numberOfCharge){
     for(int i=0; i<numberOfCharge/4-1; i++){
         //couloir droit
-        double chargeValue = (rand()%10)/10.0;
-        int intChargeValue = (int)chargeValue;
+        double randomNumber = (rand()%10)*1.0;
+        double chargeValue = randomNumber/10.0;
+        int intChargeValue = (int)randomNumber;
         tab.push_back(new Charge(chargeValue, Sphere(intChargeValue), Vector(), rand()%2, Vector()));
         Point A((double)(longueurFaceExt/numberOfCharge)*(i*4)+8, 0.5,largeurFaceExt/3);
         tab.at(tab.size()-1)->setPos(A);
 
         //couloir gauche
-        double chargeValue1 = (rand()%10)/10.0;
-        int intChargeValue1 = (int)chargeValue1;
+        double random2 = (rand()%10)*1.0;
+        double chargeValue1 = random2/10.0;
+        int intChargeValue1 = (int)random2;
         tab.push_back(new Charge(chargeValue1, Sphere(intChargeValue1), Vector(), rand()%2, Vector()));
         Point A1((double)(longueurFaceExt/numberOfCharge)*(i*4)+8, 0.5,(largeurFaceExt/3)*2.0);
         tab.at(tab.size()-1)->setPos(A1);
@@ -460,7 +465,7 @@ void ContenerCharges::update(double delta_t)
             Vector VInit = Vector(4,-10,0.5);
             Vector V = G.integral(delta_t)+VInit;
             //Delta position
-            Vector XInit = Vector(-4,20,largeurFaceExt/2);
+            //Vector XInit = Vector(-4,20,largeurFaceExt/2);
             Vector X = V.integral(delta_t);
 
             this->ChargeMobile->setPos(Point(X.x+this->ChargeMobile->getChargePos().x,X.y+this->ChargeMobile->getChargePos().y,X.z+this->ChargeMobile->getChargePos().z));
@@ -513,7 +518,7 @@ void ContenerCharges::update(double delta_t)
 
             //UpdateCollision à faire en dehors de l'updateCharge et Recalculer les forces
             if(!this->ChargeMobile->estBloquee()){
-                if(!this->ChargeMobile->collisionMur(ChargeMobileCurrentPos,X.x,X.z)){
+                if(!this->ChargeMobile->collisionMur(X.x,X.z)){
                     this->ChargeMobile->setPos(Coordonnee);
                 }
             }

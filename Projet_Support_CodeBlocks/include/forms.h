@@ -139,9 +139,9 @@ public:
     void setPos(Point p){this->sphere.setPos(p);}
     void setForce(Vector F){this->force=F;}
     bool estBloquee(){ return this->bloquage;}
-    void setBloquee(bool B){this->bloquage=B; std::cout<<this->bloquage<<"\n";}
+    void setBloquee(bool B){this->bloquage=B;}
     void collisionCharge(Charge *charge);
-    bool collisionMur(Point actualCoordinates, double newX, double newZ);
+    bool collisionMur(double newX, double newZ);
     void setColor(Color c){this->sphere.setCol(c);}
     void setPositionFuture(Point P){positionFuture=P;}
     //void calculChargeFictive(std::vector<Charge*> vecCharge);
