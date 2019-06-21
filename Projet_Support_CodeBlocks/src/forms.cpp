@@ -518,15 +518,15 @@ void ContenerCharges::update(double delta_t)
                     //Calcul d'une nouvelle force amortie et dans l'autre sens
                     if(!(Coordonnee.x>(epaisseurFace+0.5) && Coordonnee.x<(longueurFaceExt-epaisseurFace-0.5))){
                             F.x=-1*F.x;
+                            std::cout<<"inversion X\n";
                     }
-                    if(!(Coordonnee.z>(epaisseurFace+0.5) && Coordonnee.z<(largeurFaceExt-epaisseurFace-0.5))){
+                    else if(!(Coordonnee.z>(epaisseurFace+0.5) && Coordonnee.z<(largeurFaceExt-epaisseurFace-0.5))){
                         F.z=-1*F.z;
+                        std::cout<<"inversion Z\n";
                     }
                     A = (pow(10,4)/3)*F;
                     V = A.integral(delta_t);
                     X = V.integral(delta_t);
-
-                    std::cout<<"colision invertion\n";
                     Coordonnee = Point(X.x+ChargeMobileCurrentPos.x, 0.5, X.z+ChargeMobileCurrentPos.z);
                 }
                 this->ChargeMobile->setPos(Coordonnee);
