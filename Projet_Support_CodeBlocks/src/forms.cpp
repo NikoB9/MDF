@@ -13,20 +13,6 @@
 
 using namespace std;
 
-// Screen dimension constants
-const int SCREEN_WIDTH = 1040;
-const int SCREEN_HEIGHT = 700;
-
-// Max number of forms : static allocation
-const int MAX_FORMS_NUMBER = 20;
-
-// Animation actualization delay (in ms) => 100 updates per second
-const int ANIM_DELAY = 10;
-
-
-
-
-
 void Form::update(double delta_t)
 {
     // Nothing to do here, animation update is done in child class method
@@ -336,11 +322,42 @@ Point Charge::getChargePos(){
 }
 
 void Charge::collisionCharge(Charge *charge){
+    /*Distance entre 2 points : Norme
+    AB=√(xB−xA)²+(yB−yA)²+(zB−zA)².
+    */
     double distance = Vector(this->getChargePos(), charge->getChargePos()).norm();
     double distanceFuture = Vector(this->positionFuture, charge->getChargePos()).norm();
-    if(distance < 1.0 || distanceFuture<1.0){
+    if(distanceFuture<1.0){
         this->bloquage = 1;
+
+        /*Distance entre 2 points
+        AB=√(xB−xA)²+(yB−yA)²+(zB−zA)².
+        */
+        //Calcul Mouvement final
+        /*Vector F = this->getVect();
+        Vector A = (pow(10,4))*F;
+        Vector V = A.integral(delta_t);
+        Vector X = V.integral(delta_t);
+        Point Coordonnee(X.x+ChargeMobileCurrentPos.x, 0.5, X.z+ChargeMobileCurrentPos.z);*/
     }
+}
+
+bool Charge::collisionMur(Point actualCoordinates, double newX, double newZ){
+    if((this->positionFuture.x <= 0.5 + epaisseurFace || this->positionFuture.x >= longueurFaceExt - epaisseurFace - 0.5)
+       && (this->positionFuture.z <= 0.5 + epaisseurFace  || this->positionFuture.z >= largeurFaceExt - epaisseurFace - 0.5)){
+        this->setPos(Point(actualCoordinates.x, 0.5, actualCoordinates.z));
+        return 1;
+    }
+    else if(this->positionFuture.x <= 0.5 + epaisseurFace  || this->positionFuture.x >= longueurFaceExt - epaisseurFace - 0.5){
+        this->setPos(Point(actualCoordinates.x, 0.5, actualCoordinates.z+newZ));
+        return 1;
+    }
+    else if(this->positionFuture.z <= 0.5 + epaisseurFace  || this->positionFuture.z >= largeurFaceExt - epaisseurFace - 0.5){
+        this->setPos(Point(actualCoordinates.x+newX, 0.5, actualCoordinates.z));
+        return 1;
+    }
+
+    return 0;
 }
 
 
@@ -497,7 +514,9 @@ void ContenerCharges::update(double delta_t)
 
             //UpdateCollision à faire en dehors de l'updateCharge et Recalculer les forces
             if(!this->ChargeMobile->estBloquee()){
+                if(!this->ChargeMobile->collisionMur(ChargeMobileCurrentPos,X.x,X.z)){
                     this->ChargeMobile->setPos(Coordonnee);
+                }
             }
             //std::cout<<"Coordonnee charge Mobile : "<<ChargeMobile->getChargePos().x<<"   "<<ChargeMobile->getChargePos().y<<"   "<<ChargeMobile->getChargePos().z<<" is the value\n";
 

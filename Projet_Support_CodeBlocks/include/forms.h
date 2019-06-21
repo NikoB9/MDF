@@ -138,7 +138,8 @@ public:
     void setPos(Point p){this->sphere.setPos(p);}
     void setForce(Vector F){this->force=F;}
     bool estBloquee(){ return this->bloquage;}
-    void collision(Charge *charge);
+    void collisionCharge(Charge *charge);
+    bool collisionMur(Point actualCoordinates, double newX, double newZ);
     void setColor(Color c){this->col = c;}
     void setPositionFuture(Point P){positionFuture=P;}
     //void calculChargeFictive(std::vector<Charge*> vecCharge);
