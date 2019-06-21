@@ -329,7 +329,9 @@ void Charge::collisionCharge(Charge *charge){
     //double distance = Vector(this->getChargePos(), charge->getChargePos()).norm();
     double distanceFuture = Vector(this->positionFuture, charge->getChargePos()).norm();
     if(distanceFuture<1.0){
+            if(this->bloquage!=1) std::cout<<"Une collision a ete detectee ! ^^ \n";
         this->bloquage = 1;
+
 
         /*Distance entre 2 points
         AB=√(xB−xA)²+(yB−yA)²+(zB−zA)².
@@ -505,7 +507,7 @@ void ContenerCharges::update(double delta_t)
             Vector V = A.integral(delta_t);
             Vector X = V.integral(delta_t);
 
-            std::cout << F.x <<" " << F.z << std::endl;
+            //std::cout << F.x <<" " << F.z << std::endl;
             //std::cout << A.x << " " << A.y << " " << A.z << std::endl;
             //std::cout << V.x << " " << V.y << " " << V.z << std::endl;
             //Point ChargeMobile = ChargeMobile->getChargePos();
@@ -533,11 +535,11 @@ void ContenerCharges::update(double delta_t)
                     //Calcul d'une nouvelle force amortie et dans l'autre sens
                     if(!(Coordonnee.x>(epaisseurFace+0.5) && Coordonnee.x<(longueurFaceExt-epaisseurFace-0.5))){
                             F.x=-1*F.x;
-                            std::cout<<"inversion X\n";
+                            //std::cout<<"inversion X\n";
                     }
                     else if(!(Coordonnee.z>(epaisseurFace+0.5) && Coordonnee.z<(largeurFaceExt-epaisseurFace-0.5))){
                         F.z=-1*F.z;
-                        std::cout<<"inversion Z\n";
+                        //std::cout<<"inversion Z\n";
                     }
                     A = (pow(10,4)/3)*F;
                     V = A.integral(delta_t);
