@@ -814,7 +814,7 @@
 1561034758 source:c:\users\admin\desktop\projet_coop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\src\animation.cpp
 	"animation.h"
 
-1561034757 c:\users\admin\desktop\projet_coop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\animation.h
+1561115320 c:\users\admin\desktop\projet_coop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\animation.h
 	"geometry.h"
 
 1561034757 c:\users\admin\desktop\projet_coop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\geometry.h
@@ -1190,7 +1190,7 @@
 	<stdint.h>
 	<inttypes.h>
 
-1561080735 c:\users\admin\desktop\projet_coop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\forms.h
+1561115320 c:\users\admin\desktop\projet_coop\modelisation_des_forces_electromagn-tiques\projet_support_codeblocks\include\forms.h
 	"geometry.h"
 	"animation.h"
 	<vector>
